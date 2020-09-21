@@ -1,0 +1,2173 @@
+openapi: 3.0.0
+info:
+  title: Bed Management API
+  version: "1.0.0"
+  description: |
+       **Note :**
+              Please note that the partial updates are supported via PUT APIs. However, Note that If "null" value is passed for any element, in the PUT request body, it will be ignored. An empty string value should be sent (instead of "null" value) for the elements that need to be updated with NULL values.
+servers:
+  - url: 'https://api.hslynk.com/bed-inventory-api/rest'
+paths:
+  '/shelters':
+    post:
+      tags:  ['shelters']
+      description: Create a shelter
+      operationId: POST_shelter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        address:
+                            type: string
+                        description:
+                            type: string
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                        projectId:
+                            type: string
+                            format : uuid
+                        projectType:
+                            type: string
+                        url:
+                            type: string
+                    type: object
+            example: 
+                    name: shelter 1
+                    address: first lane
+                    url: www.shelter1.com
+                    projectId: 53137974-80f0-4672-be18-8410900497bc
+                    projectType: 2
+                    description: shelter with 10 beds
+                    occupantCapacity: '5'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags:  ['shelters']
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        shelters:
+                            items:
+                                properties:
+                                    address:
+                                        type: string
+                                    description:
+                                        type: string
+                                    id:
+                                        type: string
+                                        format: uuid
+                                    isActive:
+                                        type: boolean
+                                    name:
+                                        type: string
+                                    occupantCapacity:
+                                        type: integer
+                                    projectId:
+                                        type: string
+                                        format: uuid                                        
+                                    projectType:
+                                        type: string
+                                    url:
+                                        type: string
+                                type: object
+                            type: array
+                    type: object
+
+                example:
+                    shelters:
+                    - id: 6f9dafea-f0d3-4f31-986c-fc489d24a343
+                      name: JCmhR
+                      address: last line
+                      url: www.FFNrA.com
+                      projectId: 53137974-80f0-4672-be18-8410900497bc
+                      projectType: UtISA
+                      description: IrJKa
+                      occupantCapacity: 5
+                      isActive: true
+                    - id: 02e7fcc9-9687-4e57-9154-99fb0723f618
+                      name: TKVcq
+                      address: wDbZc
+                      url: www.UjGWQ.com
+                      projectId: 53137974-80f0-4672-be18-8410900497bd
+                      projectType: ZVzgN
+                      description: ctbPi
+                      occupantCapacity: 5
+                      isActive: true
+      description: Get all shelter
+      operationId: GET_all_shelter
+  '/shelters/{shelterid}':
+    put:
+      tags:  ['shelters']    
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |  
+      description: Update selected shelter
+      operationId: PUT_shelter
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        address:
+                            type: string
+                        description:
+                            type: string
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                        projectId:
+                            type: string
+                            format : uuid
+                        projectType:
+                            type: string
+                        url:
+                            type: string
+                    type: object
+            example:             
+                    name: shelter 1
+                    address: first lane
+                    url: www.shelter1.com
+                    projectId: 53137974-80f0-4672-be18-8410900497bc
+                    projectType: 2
+                    description: shelter with 10 beds
+                    occupantCapacity: '5'
+        required: true
+    get:
+      tags:  ['shelters']    
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid                    
+                        address:
+                            type: string
+                        description:
+                            type: string
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                        projectId:
+                            type: string
+                            format : uuid
+                        projectType:
+                            type: string
+                        url:
+                            type: string
+                    type: object
+                example: 
+                    id: 6f9dafea-f0d3-4f31-986c-fc489d24a343            
+                    name: shelter 1
+                    address: first lane
+                    url: www.shelter1.com
+                    projectId: 53137974-80f0-4672-be18-8410900497bc
+                    projectType: 2
+                    description: shelter with 10 beds
+                    occupantCapacity: '5'
+      description: Get selected shelter
+      operationId: GET_shelter_by_id
+    delete:
+      tags:  ['shelters']    
+      responses:
+        '200':
+          description: ''
+      description: Delete shelter
+      operationId: DELETE_shelter    
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+  /shelters/{shelterid}/areas:
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid  
+    post:
+      tags:  ['areas']    
+      description: Create a area
+      operationId: POST_area
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                properties:
+                    description:
+                        type: string
+                    name:
+                        type: string
+                    occupantCapacity:
+                        type: integer
+                type: object
+            example:             
+                name: area 1
+                description: Area details 
+                occupantCapacity: 5
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags:  ['areas']    
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        areas:
+                            items:
+                                properties:
+                                    description:
+                                        type: string
+                                    id:
+                                        type: string
+                                        format: uuid
+                                    isActive:
+                                        type: boolean
+                                    name:
+                                        type: string
+                                    occupantCapacity:
+                                        type: integer
+                                    shelter:
+                                        properties:
+                                            address:
+                                                type: string
+                                            description:
+                                                type: string
+                                            id:
+                                                type: string
+                                                format: uuid
+                                            isActive:
+                                                type: boolean
+                                            name:
+                                                type: string
+                                            occupantCapacity:
+                                                type: integer
+                                            projectId:
+                                                type: string
+                                                format: uuid
+                                            projectType:
+                                                type: string
+                                            url:
+                                                type: string
+                                        type: object
+                                type: object
+                            type: array
+                    type: object
+
+
+                example:
+                    areas:
+                    - id: 39646694-0d3e-4dc9-8cd4-22e4737456b9
+                      name: YEVmO
+                      description: CMAvq
+                      occupantCapacity: 5
+                      isActive: true
+                      shelter:
+                        id: 032075dc-6bf5-4d2d-aee0-beeb72f178c8
+                        name: acdGU
+                        address: asahK
+                        url: HOzme
+                        projectId: 53137974-80f0-4672-be18-8410900497bd
+                        projectType: UqMPK
+                        description: xgtem
+                        occupantCapacity: 5
+                        isActive:  true
+      description: Get all areas
+      operationId: GET_all_areas
+  '/shelters/{shelterid}/areas/{areaid}':
+    put:
+      tags:  ['areas']    
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |
+      description: Update selected area
+      operationId: PUT_area
+      requestBody:
+        content:
+          application/json:
+            schema:
+                properties:
+                    description:
+                        type: string
+                    name:
+                        type: string
+                    occupantCapacity:
+                        type: integer
+                type: object
+            example:             
+                name: area 1
+                description: Area details 
+                occupantCapacity: 5
+        required: true
+    get:
+      tags:  ['areas']    
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                    properties:
+                        description:
+                            type: string
+                        id:
+                            type: string
+                            format: uuid
+                        isActive:
+                            type: boolean
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                        shelter:
+                            properties:
+                                address:
+                                    type: string
+                                description:
+                                    type: string
+                                id:
+                                    type: string
+                                    format: uuid
+                                isActive:
+                                    type: boolean
+                                name:
+                                    type: string
+                                occupantCapacity:
+                                    type: integer
+                                projectId:
+                                    type: string
+                                    format: uuid
+                                projectType:
+                                    type: string
+                                url:
+                                    type: string
+                            type: object
+                    type: object
+
+                example: 
+                    id: 39646694-0d3e-4dc9-8cd4-22e4737456b9
+                    name: YEVmO
+                    description: CMAvq
+                    occupantCapacity: 5
+                    isActive: true
+                    shelter:
+                      id: 032075dc-6bf5-4d2d-aee0-beeb72f178c8
+                      name: acdGU
+                      address: asahK
+                      url: HOzme
+                      projectId: 53137974-80f0-4672-be18-8410900497bd
+                      projectType: UqMPK
+                      description: xgtem
+                      occupantCapacity: 5
+                      isActive: true
+      description: Get selected area
+      operationId: GET_area_by_id
+    delete:
+      tags:  ['areas']    
+      responses:
+        '200':
+          description: ''
+      description: Delete area
+      operationId: DELETE_area   
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid           
+  /shelters/{shelterid}/areas/{areaid}/rooms:
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid  
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid            
+    post:
+      tags:  ['rooms']    
+      description: Create a room
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                    type: object
+            example:             
+                name: room 1
+                occupantCapacity: 5
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags:  ['rooms']    
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            rooms:
+                                items:
+                                    properties:
+                                        area:
+                                            properties:
+                                                description:
+                                                    type: string
+                                                id:
+                                                    type: string
+                                                isActive:
+                                                    type: boolean
+                                                name:
+                                                    type: string
+                                                occupantCapacity:
+                                                    type: integer
+                                            type: object
+                                        id:
+                                            type: string
+                                        isActive:
+                                            type: boolean
+                                        name:
+                                            type: string
+                                        occupantCapacity:
+                                            type: integer
+                                        shelter:
+                                            properties:
+                                                address:
+                                                    type: string
+                                                description:
+                                                    type: string
+                                                id:
+                                                    type: string
+                                                isActive:
+                                                    type: boolean
+                                                name:
+                                                    type: string
+                                                occupantCapacity:
+                                                    type: integer
+                                                projectId:
+                                                    type: string
+                                                projectType:
+                                                    type: string
+                                                url:
+                                                    type: string
+                                            type: object
+                                    type: object
+                                type: array
+                        type: object
+
+
+
+                example:
+                        rooms:
+                        - id: 6a2e028b-5964-4056-8ffc-5832f2a8bdd5
+                          name: WGWCM
+                          occupantCapacity: 5
+                          isActive: true
+                          area:
+                            id: 39646694-0d3e-4dc9-8cd4-22e4737456b9
+                            name: YEVmO
+                            description: CMAvq
+                            occupantCapacity: 5
+                            isActive: true
+                          shelter:
+                            id: 032075dc-6bf5-4d2d-aee0-beeb72f178c8
+                            name: acdGU
+                            address: asahK
+                            url: HOzme
+                            projectId: 53137974-80f0-4672-be18-8410900497bd
+                            projectType: UqMPK
+                            description: xgtem
+                            occupantCapacity: 5
+                            isActive: true
+      description: Get all rooms
+  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}':
+    put:
+      tags:  ['rooms']    
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |
+      description: Update selected room
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                    type: object
+            example:             
+                name: room 1
+                occupantCapacity: 5
+        required: true
+    get:
+      tags:  ['rooms']    
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                        properties:
+                            area:
+                                properties:
+                                    description:
+                                        type: string
+                                    id:
+                                        type: string
+                                        format: uuid
+                                    isActive:
+                                        type: boolean
+                                    name:
+                                        type: string
+                                    occupantCapacity:
+                                        type: integer
+                                type: object
+                            id:
+                                type: string
+                                format: uuid
+                            isActive:
+                                type: boolean
+                            name:
+                                type: string
+                            occupantCapacity:
+                                type: integer
+                            shelter:
+                                properties:
+                                    address:
+                                        type: string
+                                    description:
+                                        type: string
+                                    id:
+                                        type: string
+                                        format: uuid
+                                    isActive:
+                                        type: boolean
+                                    name:
+                                        type: string
+                                    occupantCapacity:
+                                        type: integer
+                                    projectId:
+                                        type: string
+                                        format: uuid
+                                    projectType:
+                                        type: string
+                                    url:
+                                        type: string
+                                type: object
+                        type: object
+
+                example: 
+                        id: 6a2e028b-5964-4056-8ffc-5832f2a8bdd5
+                        name: WGWCM
+                        occupantCapacity: 5
+                        isActive: true
+                        area:
+                          id: 39646694-0d3e-4dc9-8cd4-22e4737456b9
+                          name: YEVmO
+                          description: CMAvq
+                          occupantCapacity: 5
+                          isActive: true
+                        shelter:
+                          id: 032075dc-6bf5-4d2d-aee0-beeb72f178c8
+                          name: acdGU
+                          address: asahK
+                          url: HOzme
+                          projectId: 53137974-80f0-4672-be18-8410900497bd
+                          projectType: UqMPK
+                          description: xgtem
+                          occupantCapacity: 5
+                          isActive: true
+      description: Get selected room
+    delete:
+      tags:  ['rooms']    
+      responses:
+        '200':
+          description: ''
+      description: Delete room
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/reservations':  
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid  
+    post:
+      tags:  ['room-reservations']    
+      description: Create a room reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags:  ['room-reservations']        
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            reservations:
+                                items:
+                                    properties:
+                                        reservationEndDateDate:
+                                            type: string
+                                            format: mm-dd-yyyy        
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        reservationStateDate:
+                                            type: string
+                                            format: mm-dd-yyyy                                            
+                                        reservedClientId:
+                                            type: string
+                                            format: uuid
+                                        reservedHouseholdId:
+                                            type: string
+                                            format: uuid
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    reservations:
+                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                      reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      reservationStateDate: 08-22-2020
+                      reservationEndDateDate: 10-22-2020
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get all room reservations
+  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/reservations/{reservationid}':
+    put:
+      tags:  ['room-reservations']        
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |  
+      description: Update selected reservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+        required: true
+    get:
+      tags:  ['room-reservations']        
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                        id:
+                            type: string
+                            format: uuid                            
+                    type: object
+                example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+                    id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get selected room reservation
+    delete:
+      tags:  ['room-reservations']        
+      responses:
+        '200':
+          description: ''
+      description: Delete room reservation
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: reservationid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid                
+  /shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits:
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid  
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid           
+    post:
+      tags: ['bedunits']    
+      description: Create a bed unit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                properties:
+                    occupancy:
+                        type: boolean
+                    occupantCapacity:
+                        type: integer
+                    overflow:
+                        type: boolean
+                type: object
+
+            example:             
+                occupantCapacity: 5
+                occupancy: true
+                overflow: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags: ['bedunits']        
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            bedUnits:
+                                items:
+                                    properties:
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        isActive:
+                                            type: boolean
+                                        occupancy:
+                                            type: boolean
+                                        occupantCapacity:
+                                            type: integer
+                                        overflow:
+                                            type: boolean
+                                        room:
+                                            properties:
+                                                area:
+                                                    properties:
+                                                        description:
+                                                            type: string
+                                                        id:
+                                                            type: string
+                                                            format: uuid
+                                                        isActive:
+                                                            type: boolean
+                                                        name:
+                                                            type: string
+                                                        occupantCapacity:
+                                                            type: integer
+                                                    type: object
+                                                id:
+                                                    type: string
+                                                    format: uuid
+                                                isActive:
+                                                    type: boolean
+                                                name:
+                                                    type: string
+                                                occupantCapacity:
+                                                    type: integer
+                                                shelter:
+                                                    properties:
+                                                        address:
+                                                            type: string
+                                                        description:
+                                                            type: string
+                                                        id:
+                                                            type: string
+                                                            format: uuid
+                                                        isActive:
+                                                            type: boolean
+                                                        name:
+                                                            type: string
+                                                        occupantCapacity:
+                                                            type: integer
+                                                        projectId:
+                                                            type: string
+                                                            format: uuid
+                                                        projectType:
+                                                            type: string
+                                                        url:
+                                                            type: string
+                                                    type: object
+                                            type: object
+                                    type: object
+                                type: array
+                        type: object
+
+                example:
+                    bedUnits:
+                    - id: bc66fc17-f811-4d65-8399-8215d3700577
+                      occupancy: true
+                      occupantCapacity: 5
+                      overflow: true
+                      isActive: true
+                      room:
+                        id: f9a0a07a-d630-4e76-a29c-9424ee7e0890
+                        name: qiPoF
+                        occupantCapacity: 5
+                        isActive: 
+                        area:
+                          id: affe2906-22b7-443a-bf79-c54e6e1246d9
+                          name: OHReA
+                          description: ylkOM
+                          occupantCapacity: 5
+                          isActive: true
+                        shelter:
+                          id: 9f8822ba-17db-4ccb-993f-6e10290438b7
+                          name: cysmP
+                          address: rKxGL
+                          url: pAtMU
+                          projectId: 53137974-80f0-4672-be18-8410900497bd
+                          projectType: zRTbj
+                          description: ABsal
+                          occupantCapacity: 5
+                          isActive: true
+      description: Get all bed units
+  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}':
+    put:
+      tags: ['bedunits']        
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |
+      description: Update selected bed unit
+      requestBody:
+        content:
+          application/json:
+            schema:
+                properties:
+                    occupancy:
+                        type: boolean
+                    occupantCapacity:
+                        type: integer
+                    overflow:
+                        type: boolean
+                type: object
+
+            example:             
+                occupantCapacity: 5
+                occupancy: true
+                overflow: true
+        required: true
+    get:
+      tags: ['bedunits']        
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                        properties:
+                            id:
+                                type: string
+                            isActive:
+                                type: boolean
+                            occupancy:
+                                type: boolean
+                            occupantCapacity:
+                                type: integer
+                            overflow:
+                                type: boolean
+                            room:
+                                properties:
+                                    area:
+                                        properties:
+                                            description:
+                                                type: string
+                                            id:
+                                                type: string
+                                            isActive:
+                                                type: boolean
+                                            name:
+                                                type: string
+                                            occupantCapacity:
+                                                type: integer
+                                        type: object
+                                    id:
+                                        type: string
+                                    isActive:
+                                        type: boolean
+                                    name:
+                                        type: string
+                                    occupantCapacity:
+                                        type: integer
+                                    shelter:
+                                        properties:
+                                            address:
+                                                type: string
+                                            description:
+                                                type: string
+                                            id:
+                                                type: string
+                                            isActive:
+                                                type: boolean
+                                            name:
+                                                type: string
+                                            occupantCapacity:
+                                                type: integer
+                                            projectId:
+                                                type: string
+                                            projectType:
+                                                type: string
+                                            url:
+                                                type: string
+                                        type: object
+                                type: object
+                        type: object
+
+                example: 
+                    id: bc66fc17-f811-4d65-8399-8215d3700577
+                    occupancy: true
+                    occupantCapacity: 5
+                    overflow: true
+                    isActive: true
+                    room:
+                      id: f9a0a07a-d630-4e76-a29c-9424ee7e0890
+                      name: qiPoF
+                      occupantCapacity: 5
+                      isActive: 
+                      area:
+                        id: affe2906-22b7-443a-bf79-c54e6e1246d9
+                        name: OHReA
+                        description: ylkOM
+                        occupantCapacity: 5
+                        isActive: true
+                      shelter:
+                        id: 9f8822ba-17db-4ccb-993f-6e10290438b7
+                        name: cysmP
+                        address: rKxGL
+                        url: pAtMU
+                        projectId: 53137974-80f0-4672-be18-8410900497bd
+                        projectType: zRTbj
+                        description: ABsal
+                        occupantCapacity: 5
+                        isActive: true
+      description: Get selected bed unit details
+    delete:
+      tags: ['bedunits']        
+      responses:
+        '200':
+          description: ''
+      description: Delete bed unit
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: bedunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid     
+  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}/reservations':  
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid  
+      - name: bedunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid               
+    post:
+      tags: ['bedunit-reservations']        
+      description: Create a bed unit reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags: ['bedunit-reservations']    
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            reservations:
+                                items:
+                                    properties:
+                                        reservationEndDateDate:
+                                            type: string
+                                            format: mm-dd-yyyy        
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        reservationStateDate:
+                                            type: string
+                                            format: mm-dd-yyyy                                            
+                                        reservedClientId:
+                                            type: string
+                                            format: uuid
+                                        reservedHouseholdId:
+                                            type: string
+                                            format: uuid
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    reservations:
+                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                      reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      reservationStateDate: 08-22-2020
+                      reservationEndDateDate: 10-22-2020
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get all bed unit reservations
+  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}/reservations/{reservationid}':
+    put:
+      tags: ['bedunit-reservations']    
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |  
+      description: Update selected bed unit reservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+        required: true
+    get:
+      tags: ['bedunit-reservations']    
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                        id:
+                            type: string
+                            format: uuid                            
+                    type: object
+                example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+                    id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get selected bed unit reservation
+    delete:
+      tags: ['bedunit-reservations']    
+      responses:
+        '200':
+          description: ''
+      description: Delete selected bed unit reservation
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: bedunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid               
+      - name: reservationid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid       
+  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}/occupants':  
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: bedunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid       
+    post:
+      tags: ['bedunit-occupants']    
+      description: Create a bed unit occupant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        occupancyEndDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        occupancyStartDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        clientId:
+                            type: string
+                            format: uuid
+                        enrollmentId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    occupancyStartDate: 08-22-2020
+                    occupancyEndDate: 10-22-2020
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags: ['bedunit-occupants']        
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            reservations:
+                                items:
+                                    properties:
+                                        occupancyEndDate:
+                                            type: string
+                                            format: mm-dd-yyyy        
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        occupancyStartDate:
+                                            type: string
+                                            format: mm-dd-yyyy                                            
+                                        clientId:
+                                            type: string
+                                            format: uuid
+                                        enrollmentId:
+                                            type: string
+                                            format: uuid
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    reservations:
+                    - clientId: 480ea107-def2-4003-a76a-7210b0001424
+                      enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      occupancyStartDate: 08-22-2020
+                      occupancyEndDate: 10-22-2020
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get all bed unit occupants
+  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}/occupants/{occupantid}':
+    put:
+      tags: ['bedunit-occupants']        
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |  
+      description: Update selected bed unit occupant
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        occupancyEndDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        occupancyStartDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        clientId:
+                            type: string
+                            format: uuid
+                        enrollmentId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    occupancyStartDate: 08-22-2020
+                    occupancyEndDate: 10-22-2020
+        required: true
+    get:
+      tags: ['bedunit-occupants']        
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                    properties:
+                        occupancyEndDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        occupancyStartDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        clientId:
+                            type: string
+                            format: uuid
+                        enrollmentId:
+                            type: string
+                            format: uuid
+                        id:
+                            type: string
+                            format: uuid                            
+                    type: object
+                example: 
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    occupancyStartDate: 08-22-2020
+                    occupancyEndDate: 10-22-2020
+                    id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get selected bed unit occupant
+    delete:
+      tags: ['bedunit-occupants']        
+      responses:
+        '200':
+          description: ''
+      description: Delete selected bed unit occupant
+    parameters:
+      - name: shelterid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: areaid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid 
+      - name: bedunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid      
+      - name: occupantid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid                    
+  /housingunits:
+    post:
+      tags: ['housing units']  
+      description: Create a housing unit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        address:
+                            type: string
+                        description:
+                            type: string
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                        projectId:
+                            type: string
+                            format : uuid
+                        projectType:
+                            type: string
+                    type: object
+            example: 
+                    name: unit 1
+                    address: first lane
+                    projectId: 53137974-80f0-4672-be18-8410900497bc
+                    projectType: 2
+                    description: unit 1 with 10 beds
+                    occupantCapacity: '5'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags: ['housing units']      
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        shelters:
+                            items:
+                                properties:
+                                    address:
+                                        type: string
+                                    description:
+                                        type: string
+                                    id:
+                                        type: string
+                                        format: uuid
+                                    isActive:
+                                        type: boolean
+                                    name:
+                                        type: string
+                                    occupantCapacity:
+                                        type: integer
+                                    projectId:
+                                        type: string
+                                        format: uuid                                        
+                                    projectType:
+                                        type: string
+                                type: object
+                            type: array
+                    type: object
+
+                example:
+                    shelters:
+                    - id: 6f9dafea-f0d3-4f31-986c-fc489d24a343
+                      name: JCmhR
+                      address: last line
+                      projectId: 53137974-80f0-4672-be18-8410900497bc
+                      projectType: UtISA
+                      description: IrJKa
+                      occupantCapacity: 5
+                      isActive: true
+                    - id: 02e7fcc9-9687-4e57-9154-99fb0723f618
+                      name: TKVcq
+                      address: wDbZc
+                      projectId: 53137974-80f0-4672-be18-8410900497bd
+                      projectType: ZVzgN
+                      description: ctbPi
+                      occupantCapacity: 5
+                      isActive: true
+      description: Get all housing units
+  '/housingunits/{housingunitid}':
+    put:
+      tags: ['housing units']      
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |  
+      description: Update selected housing unit
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        address:
+                            type: string
+                        description:
+                            type: string
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                        projectId:
+                            type: string
+                            format : uuid
+                        projectType:
+                            type: string
+                    type: object
+            example:             
+                    name: unit 2
+                    address: first lane
+                    projectId: 53137974-80f0-4672-be18-8410900497bc
+                    projectType: 2
+                    description: unit with 10 beds
+                    occupantCapacity: '5'
+        required: true
+    get:
+      tags: ['housing units']      
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid                    
+                        address:
+                            type: string
+                        description:
+                            type: string
+                        name:
+                            type: string
+                        occupantCapacity:
+                            type: integer
+                        projectId:
+                            type: string
+                            format : uuid
+                        projectType:
+                            type: string
+                    type: object
+                example: 
+                    id: 6f9dafea-f0d3-4f31-986c-fc489d24a343            
+                    name: unit 1
+                    address: first lane
+                    projectId: 53137974-80f0-4672-be18-8410900497bc
+                    projectType: 2
+                    description: unit with 10 beds
+                    occupantCapacity: '5'
+      description: Get selected housing unit
+    delete:
+      tags: ['housing units']      
+      responses:
+        '200':
+          description: ''
+      description: Delete selected housing unit
+    parameters:
+      - name: housingunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid        
+  '/housingunits/{housingunitid}/reservations':  
+    parameters:
+      - name: housingunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid   
+    post:
+      tags: ['housingUnit-reservations']      
+      description: Create a housing unit reservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags: ['housingUnit-reservations']          
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            reservations:
+                                items:
+                                    properties:
+                                        reservationEndDateDate:
+                                            type: string
+                                            format: mm-dd-yyyy        
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        reservationStateDate:
+                                            type: string
+                                            format: mm-dd-yyyy                                            
+                                        reservedClientId:
+                                            type: string
+                                            format: uuid
+                                        reservedHouseholdId:
+                                            type: string
+                                            format: uuid
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    reservations:
+                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                      reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      reservationStateDate: 08-22-2020
+                      reservationEndDateDate: 10-22-2020
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get all housing unit reservations
+  '/housingunits/{housingunitid}/reservations/{reservationid}':
+    put:
+      tags: ['housingUnit-reservations']          
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |  
+      description: Update selected housing unit reservation
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+        required: true
+    get:
+      tags: ['housingUnit-reservations']          
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                    properties:
+                        reservationEndDateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservationStateDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        reservedClientId:
+                            type: string
+                            format: uuid
+                        reservedHouseholdId:
+                            type: string
+                            format: uuid
+                        id:
+                            type: string
+                            format: uuid                            
+                    type: object
+                example: 
+                    reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                    reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    reservationStateDate: 08-22-2020
+                    reservationEndDateDate: 10-22-2020
+                    id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get selected housing unit reservation
+    delete:
+      tags: ['housingUnit-reservations']          
+      responses:
+        '200':
+          description: ''
+      description: Delete selected housing unit reservation
+    parameters:
+      - name: housingunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid   
+      - name: reservationid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid              
+  '/housingunits/{housingunitid}/occupants':  
+    parameters:
+      - name: housingunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid   
+    post:
+      tags: ['housingUnit-occupants']          
+      description: Create a housing unit occupant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        occupancyEndDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        occupancyStartDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        clientId:
+                            type: string
+                            format: uuid
+                        enrollmentId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    occupancyStartDate: 08-22-2020
+                    occupancyEndDate: 10-22-2020
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+    get:
+      tags: ['housingUnit-occupants']         
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            reservations:
+                                items:
+                                    properties:
+                                        occupancyEndDate:
+                                            type: string
+                                            format: mm-dd-yyyy        
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        occupancyStartDate:
+                                            type: string
+                                            format: mm-dd-yyyy                                            
+                                        clientId:
+                                            type: string
+                                            format: uuid
+                                        enrollmentId:
+                                            type: string
+                                            format: uuid
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    reservations:
+                    - clientId: 480ea107-def2-4003-a76a-7210b0001424
+                      enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      occupancyStartDate: 08-22-2020
+                      occupancyEndDate: 10-22-2020
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get all housing unit occupants
+  '/housingunits/{housingunitid}/occupants/{occupantid}':
+    put:
+      tags: ['housingUnit-occupants']         
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |  
+      description: Update selected housing unit occupant
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        occupancyEndDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        occupancyStartDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        clientId:
+                            type: string
+                            format: uuid
+                        enrollmentId:
+                            type: string
+                            format: uuid
+                    type: object
+            example: 
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    occupancyStartDate: 08-22-2020
+                    occupancyEndDate: 10-22-2020
+        required: true
+    get:
+      tags: ['housingUnit-occupants']         
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                    properties:
+                        occupancyEndDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        occupancyStartDate:
+                            type: string
+                            format: mm-dd-yyyy
+                        clientId:
+                            type: string
+                            format: uuid
+                        enrollmentId:
+                            type: string
+                            format: uuid
+                        id:
+                            type: string
+                            format: uuid                            
+                    type: object
+                example: 
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    occupancyStartDate: 08-22-2020
+                    occupancyEndDate: 10-22-2020
+                    id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+      description: Get selected housing unit occupant
+    delete:
+      tags: ['housingUnit-occupants']         
+      responses:
+        '200':
+          description: ''
+      description: Delete selected housing unit occupant
+    parameters:
+      - name: housingunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid   
+      - name: occupantid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid                                            
+components:
+  schemas: {}
+  responses: {}
+  parameters: {}
+  examples: {}
+  requestBodies: {}
+  headers: {}
+  securitySchemes:
+    oauth_2_0:
+      description: |
+        The HMIS API supports OAuth 2.0 for authenticating all API requests.
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: 'https://hslynk.com/hmis-authorization-service/rest/token'
+          scopes:
+            user: ''
+            administrator: ''
+  links: {}
+  callbacks: {}

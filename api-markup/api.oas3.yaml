@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.1.0"
+  version: "1.1.1"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -68,7 +68,7 @@ paths:
                     address1: AZYiD
                     address2: kyEKc
                     city: jMckH
-                    state:jMVcs
+                    state: jMVcs
                     zipcode: 35829
                     longitude: 38.907192
                     latitude: 77.036873
@@ -166,7 +166,7 @@ paths:
                       address1: AZYiD
                       address2: kyEKc
                       city: jMckH
-                      state:jMVcs
+                      state: jMVcs
                       zipcode: 35829
                       longitude: 38.907192
                       latitude: 77.036873                      
@@ -239,7 +239,7 @@ paths:
                     address1: AZYiD
                     address2: kyEKc
                     city: jMckH
-                    state:jMVcs
+                    state: jMVcs
                     zipcode: 35829
                     longitude: 38.907192
                     latitude: 77.036873                    
@@ -298,7 +298,7 @@ paths:
                     address1: AZYiD
                     address2: kyEKc
                     city: jMckH
-                    state:jMVcs
+                    state: jMVcs
                     zipcode: 35829
                     longitude: 38.907192
                     latitude: 77.036873                    
@@ -461,7 +461,7 @@ paths:
                         address1: AZYiD
                         address2: kyEKc
                         city: jMckH
-                        state:jMVcs
+                        state: jMVcs
                         zipcode: 35829
                         longitude: 38.907192
                         latitude: 77.036873                        
@@ -574,7 +574,7 @@ paths:
                       address1: AZYiD
                       address2: kyEKc
                       city: jMckH
-                      state:jMVcs
+                      state: jMVcs
                       zipcode: 35829
                       longitude: 38.907192
                       latitude: 77.036873                      
@@ -760,7 +760,7 @@ paths:
                             address1: AZYiD
                             address2: kyEKc
                             city: jMckH
-                            state:jMVcs
+                            state: jMVcs
                             zipcode: 35829
                             longitude: 38.907192
                             latitude: 77.036873                                                  
@@ -885,7 +885,7 @@ paths:
                           address1: AZYiD
                           address2: kyEKc
                           city: jMckH
-                          state:jMVcs
+                          state: jMVcs
                           zipcode: 35829
                           longitude: 38.907192
                           latitude: 77.036873                                                
@@ -1318,7 +1318,7 @@ paths:
                           address1: AZYiD
                           address2: kyEKc
                           city: jMckH
-                          state:jMVcs
+                          state: jMVcs
                           zipcode: 35829
                           longitude: 38.907192
                           latitude: 77.036873                                                
@@ -1462,7 +1462,7 @@ paths:
                         address1: AZYiD
                         address2: kyEKc
                         city: jMckH
-                        state:jMVcs
+                        state: jMVcs
                         zipcode: 35829
                         longitude: 38.907192
                         latitude: 77.036873                                              

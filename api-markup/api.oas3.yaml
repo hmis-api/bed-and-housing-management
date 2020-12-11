@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.0.0"
+  version: "1.1.0"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -42,6 +42,20 @@ paths:
                             type: string
                         url:
                             type: string
+                        address1:
+                            type: string                            
+                        address2:
+                            type: string          
+                        city:
+                            type: string                            
+                        state:
+                            type: string                            
+                        zipcode:
+                            type: string                            
+                        longitude:
+                            type: string                            
+                        latitude:
+                            type: string                                                        
                     type: object
             example:
                     name: shelter 1
@@ -51,6 +65,14 @@ paths:
                     projectType: 2
                     description: shelter with 10 beds
                     occupantCapacity: '5'
+                    address1: AZYiD
+                    address2: kyEKc
+                    city: jMckH
+                    state:jMVcs
+                    zipcode: 35829
+                    longitude: 38.907192
+                    latitude: 77.036873
+
       responses:
         '200':
           description: Success
@@ -74,6 +96,16 @@ paths:
             application/json:
                 schema:
                     properties:
+                        pagination:
+                            properties:
+                                from:
+                                        type: integer                                
+                                maximum:
+                                        type: integer                                
+                                returned:
+                                        type: integer
+                                total:
+                                        type: integer                                
                         shelters:
                             items:
                                 properties:
@@ -97,11 +129,30 @@ paths:
                                         type: string
                                     url:
                                         type: string
+                                    address1:
+                                        type: string                            
+                                    address2:
+                                        type: string          
+                                    city:
+                                        type: string                            
+                                    state:
+                                        type: string                            
+                                    zipcode:
+                                        type: string                            
+                                    longitude:
+                                        type: string                            
+                                    latitude:
+                                        type: string                                                                                                
                                 type: object
                             type: array
                     type: object
 
                 example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                
                     shelters:
                     - id: 6f9dafea-f0d3-4f31-986c-fc489d24a343
                       name: JCmhR
@@ -112,6 +163,13 @@ paths:
                       description: IrJKa
                       occupantCapacity: 5
                       isActive: true
+                      address1: AZYiD
+                      address2: kyEKc
+                      city: jMckH
+                      state:jMVcs
+                      zipcode: 35829
+                      longitude: 38.907192
+                      latitude: 77.036873                      
                     - id: 02e7fcc9-9687-4e57-9154-99fb0723f618
                       name: TKVcq
                       address: wDbZc
@@ -155,6 +213,20 @@ paths:
                             type: string
                         url:
                             type: string
+                        address1:
+                            type: string                            
+                        address2:
+                            type: string          
+                        city:
+                            type: string                            
+                        state:
+                            type: string                            
+                        zipcode:
+                            type: string                            
+                        longitude:
+                            type: string                            
+                        latitude:
+                            type: string                                                                                    
                     type: object
             example:
                     name: shelter 1
@@ -164,6 +236,13 @@ paths:
                     projectType: 2
                     description: shelter with 10 beds
                     occupantCapacity: '5'
+                    address1: AZYiD
+                    address2: kyEKc
+                    city: jMckH
+                    state:jMVcs
+                    zipcode: 35829
+                    longitude: 38.907192
+                    latitude: 77.036873                    
         required: true
     get:
       tags:  ['shelters']
@@ -192,6 +271,20 @@ paths:
                             type: string
                         url:
                             type: string
+                        address1:
+                            type: string                            
+                        address2:
+                            type: string          
+                        city:
+                            type: string                            
+                        state:
+                            type: string                            
+                        zipcode:
+                            type: string                            
+                        longitude:
+                            type: string                            
+                        latitude:
+                            type: string                                                                                    
                     type: object
                 example:
                     id: 6f9dafea-f0d3-4f31-986c-fc489d24a343
@@ -202,6 +295,13 @@ paths:
                     projectType: 2
                     description: shelter with 10 beds
                     occupantCapacity: '5'
+                    address1: AZYiD
+                    address2: kyEKc
+                    city: jMckH
+                    state:jMVcs
+                    zipcode: 35829
+                    longitude: 38.907192
+                    latitude: 77.036873                    
       description: Get selected shelter
       operationId: GET_shelter_by_id
     delete:
@@ -270,6 +370,16 @@ paths:
             application/json:
                 schema:
                     properties:
+                        pagination:
+                            properties:
+                                from:
+                                        type: integer                                
+                                maximum:
+                                        type: integer                                
+                                returned:
+                                        type: integer
+                                total:
+                                        type: integer                                    
                         areas:
                             items:
                                 properties:
@@ -306,6 +416,20 @@ paths:
                                                 type: string
                                             url:
                                                 type: string
+                                            address1:
+                                                type: string                            
+                                            address2:
+                                                type: string          
+                                            city:
+                                                type: string                            
+                                            state:
+                                                type: string                            
+                                            zipcode:
+                                                type: string                            
+                                            longitude:
+                                                type: string                            
+                                            latitude:
+                                                type: string                                                                                                        
                                         type: object
                                 type: object
                             type: array
@@ -313,6 +437,11 @@ paths:
 
 
                 example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
                     areas:
                     - id: 39646694-0d3e-4dc9-8cd4-22e4737456b9
                       name: YEVmO
@@ -329,6 +458,13 @@ paths:
                         description: xgtem
                         occupantCapacity: 5
                         isActive:  true
+                        address1: AZYiD
+                        address2: kyEKc
+                        city: jMckH
+                        state:jMVcs
+                        zipcode: 35829
+                        longitude: 38.907192
+                        latitude: 77.036873                        
       description: Get all areas
       operationId: GET_all_areas
   '/shelters/{shelterid}/areas/{areaid}':
@@ -402,6 +538,20 @@ paths:
                                     type: string
                                 url:
                                     type: string
+                                address1:
+                                    type: string                            
+                                address2:
+                                    type: string          
+                                city:
+                                    type: string                            
+                                state:
+                                    type: string                            
+                                zipcode:
+                                    type: string                            
+                                longitude:
+                                    type: string                            
+                                latitude:
+                                    type: string                                                                                            
                             type: object
                     type: object
 
@@ -421,6 +571,13 @@ paths:
                       description: xgtem
                       occupantCapacity: 5
                       isActive: true
+                      address1: AZYiD
+                      address2: kyEKc
+                      city: jMckH
+                      state:jMVcs
+                      zipcode: 35829
+                      longitude: 38.907192
+                      latitude: 77.036873                      
       description: Get selected area
       operationId: GET_area_by_id
     delete:
@@ -497,6 +654,16 @@ paths:
             application/json:
                 schema:
                         properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
                             rooms:
                                 items:
                                     properties:
@@ -541,6 +708,20 @@ paths:
                                                     type: string
                                                 url:
                                                     type: string
+                                                address1:
+                                                    type: string                            
+                                                address2:
+                                                    type: string          
+                                                city:
+                                                    type: string                            
+                                                state:
+                                                    type: string                            
+                                                zipcode:
+                                                    type: string                            
+                                                longitude:
+                                                    type: string                            
+                                                latitude:
+                                                    type: string                                                                                                            
                                             type: object
                                     type: object
                                 type: array
@@ -549,6 +730,12 @@ paths:
 
 
                 example:
+                        pagination:
+                          from: 0
+                          returned: 2
+                          total: 67
+                          maximum: 30                
+                
                         rooms:
                         - id: 6a2e028b-5964-4056-8ffc-5832f2a8bdd5
                           name: WGWCM
@@ -570,6 +757,13 @@ paths:
                             description: xgtem
                             occupantCapacity: 5
                             isActive: true
+                            address1: AZYiD
+                            address2: kyEKc
+                            city: jMckH
+                            state:jMVcs
+                            zipcode: 35829
+                            longitude: 38.907192
+                            latitude: 77.036873                                                  
       description: Get all rooms
   '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}':
     put:
@@ -650,6 +844,20 @@ paths:
                                         type: string
                                     url:
                                         type: string
+                                    address1:
+                                        type: string                            
+                                    address2:
+                                        type: string          
+                                    city:
+                                        type: string                            
+                                    state:
+                                        type: string                            
+                                    zipcode:
+                                        type: string                            
+                                    longitude:
+                                        type: string                            
+                                    latitude:
+                                        type: string                                                                                                
                                 type: object
                         type: object
 
@@ -674,6 +882,13 @@ paths:
                           description: xgtem
                           occupantCapacity: 5
                           isActive: true
+                          address1: AZYiD
+                          address2: kyEKc
+                          city: jMckH
+                          state:jMVcs
+                          zipcode: 35829
+                          longitude: 38.907192
+                          latitude: 77.036873                                                
       description: Get selected room
     delete:
       tags:  ['rooms']
@@ -770,6 +985,16 @@ paths:
             application/json:
                 schema:
                         properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
                             reservations:
                                 items:
                                     properties:
@@ -792,6 +1017,11 @@ paths:
                                 type: array
                         type: object
                 example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
                     reservations:
                     - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                       reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
@@ -961,6 +1191,16 @@ paths:
             application/json:
                 schema:
                         properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
                             bedUnits:
                                 items:
                                     properties:
@@ -1022,6 +1262,20 @@ paths:
                                                             type: string
                                                         url:
                                                             type: string
+                                                        address1:
+                                                            type: string                            
+                                                        address2:
+                                                            type: string          
+                                                        city:
+                                                            type: string                            
+                                                        state:
+                                                            type: string                            
+                                                        zipcode:
+                                                            type: string                            
+                                                        longitude:
+                                                            type: string                            
+                                                        latitude:
+                                                            type: string                                                                                                                    
                                                     type: object
                                             type: object
                                     type: object
@@ -1029,6 +1283,11 @@ paths:
                         type: object
 
                 example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
                     bedUnits:
                     - id: bc66fc17-f811-4d65-8399-8215d3700577
                       occupancy: true
@@ -1056,6 +1315,13 @@ paths:
                           description: ABsal
                           occupantCapacity: 5
                           isActive: true
+                          address1: AZYiD
+                          address2: kyEKc
+                          city: jMckH
+                          state:jMVcs
+                          zipcode: 35829
+                          longitude: 38.907192
+                          latitude: 77.036873                                                
       description: Get all bed units
   '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}':
     put:
@@ -1148,6 +1414,20 @@ paths:
                                                 type: string
                                             url:
                                                 type: string
+                                            address1:
+                                                type: string                            
+                                            address2:
+                                                type: string          
+                                            city:
+                                                type: string                            
+                                            state:
+                                                type: string                            
+                                            zipcode:
+                                                type: string                            
+                                            longitude:
+                                                type: string                            
+                                            latitude:
+                                                type: string                                                                                                        
                                         type: object
                                 type: object
                         type: object
@@ -1179,6 +1459,13 @@ paths:
                         description: ABsal
                         occupantCapacity: 5
                         isActive: true
+                        address1: AZYiD
+                        address2: kyEKc
+                        city: jMckH
+                        state:jMVcs
+                        zipcode: 35829
+                        longitude: 38.907192
+                        latitude: 77.036873                                              
       description: Get selected bed unit details
     delete:
       tags: ['bedunits']
@@ -1211,26 +1498,8 @@ paths:
         schema:
           type: string
           format: uuid
-  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}/reservations':
+  '/bedunits/{bedunitid}/reservations':
     parameters:
-      - name: shelterid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: areaid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: roomid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
       - name: bedunitid
         in: path
         required: true
@@ -1287,6 +1556,16 @@ paths:
             application/json:
                 schema:
                         properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
                             reservations:
                                 items:
                                     properties:
@@ -1309,6 +1588,11 @@ paths:
                                 type: array
                         type: object
                 example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
                     reservations:
                     - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                       reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
@@ -1316,7 +1600,7 @@ paths:
                       reservationEndDateDate: 10-22-2020
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get all bed unit reservations
-  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}/reservations/{reservationid}':
+  '/bedunits/{bedunitid}/reservations/{reservationid}':
     put:
       tags: ['bedunit-reservations']
       responses:
@@ -1360,6 +1644,16 @@ paths:
             application/json:
                 schema:
                     properties:
+                        pagination:
+                            properties:
+                                from:
+                                        type: integer                                
+                                maximum:
+                                        type: integer                                
+                                returned:
+                                        type: integer
+                                total:
+                                        type: integer                                    
                         reservationEndDateDate:
                             type: string
                             format: mm-dd-yyyy
@@ -1390,24 +1684,6 @@ paths:
           description: ''
       description: Delete selected bed unit reservation
     parameters:
-      - name: shelterid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: areaid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: roomid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
       - name: bedunitid
         in: path
         required: true
@@ -1420,26 +1696,8 @@ paths:
         schema:
           type: string
           format: uuid
-  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}/occupants':
+  '/bedunits/{bedunitid}/occupants':
     parameters:
-      - name: shelterid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: areaid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: roomid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
       - name: bedunitid
         in: path
         required: true
@@ -1496,6 +1754,16 @@ paths:
             application/json:
                 schema:
                         properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
                             reservations:
                                 items:
                                     properties:
@@ -1518,6 +1786,11 @@ paths:
                                 type: array
                         type: object
                 example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
                     reservations:
                     - clientId: 480ea107-def2-4003-a76a-7210b0001424
                       enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
@@ -1525,7 +1798,7 @@ paths:
                       occupancyEndDate: 10-22-2020
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get all bed unit occupants
-  '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}/occupants/{occupantid}':
+  '/bedunits/{bedunitid}/occupants/{occupantid}':
     put:
       tags: ['bedunit-occupants']
       responses:
@@ -1599,24 +1872,6 @@ paths:
           description: ''
       description: Delete selected bed unit occupant
     parameters:
-      - name: shelterid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: areaid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
-      - name: roomid
-        in: path
-        required: true
-        schema:
-          type: string
-          format: uuid
       - name: bedunitid
         in: path
         required: true
@@ -1683,7 +1938,17 @@ paths:
             application/json:
                 schema:
                     properties:
-                        shelters:
+                        pagination:
+                            properties:
+                                from:
+                                        type: integer                                
+                                maximum:
+                                        type: integer                                
+                                returned:
+                                        type: integer
+                                total:
+                                        type: integer                                    
+                        housingUnits:
                             items:
                                 properties:
                                     address:
@@ -1709,7 +1974,12 @@ paths:
                     type: object
 
                 example:
-                    shelters:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
+                    housingUnits:
                     - id: 6f9dafea-f0d3-4f31-986c-fc489d24a343
                       name: JCmhR
                       address: last line
@@ -1871,6 +2141,16 @@ paths:
             application/json:
                 schema:
                         properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                              
                             reservations:
                                 items:
                                     properties:
@@ -1893,6 +2173,11 @@ paths:
                                 type: array
                         type: object
                 example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
                     reservations:
                     - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                       reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
@@ -2044,6 +2329,16 @@ paths:
             application/json:
                 schema:
                         properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                              
                             reservations:
                                 items:
                                     properties:
@@ -2066,6 +2361,11 @@ paths:
                                 type: array
                         type: object
                 example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                                
                     reservations:
                     - clientId: 480ea107-def2-4003-a76a-7210b0001424
                       enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f

@@ -195,7 +195,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20          
+          default: 30          
   '/shelters/{shelterid}':
     put:
       tags:  ['shelters']
@@ -496,7 +496,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                
+          default: 30                
   '/shelters/{shelterid}/areas/{areaid}':
     put:
       tags:  ['areas']
@@ -809,7 +809,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                
+          default: 30                
   '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}':
     put:
       tags:  ['rooms']
@@ -1088,7 +1088,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                      
+          default: 30                      
   '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/reservations/{reservationid}':
     put:
       tags:  ['room-reservations']
@@ -1397,7 +1397,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                      
+          default: 30                      
   '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/bedunits/{bedunitid}':
     put:
       tags: ['bedunits']
@@ -1689,7 +1689,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                      
+          default: 30                      
   '/bedunits/{bedunitid}/reservations/{reservationid}':
     put:
       tags: ['bedunit-reservations']
@@ -1781,7 +1781,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                      
+          default: 30                      
     delete:
       tags: ['bedunit-reservations']
       responses:
@@ -1916,7 +1916,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                                      
+          default: 30                                      
       description: Get all bed unit occupants
   '/bedunits/{bedunitid}/occupants/{occupantid}':
     put:
@@ -2131,7 +2131,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                      
+          default: 30                      
   '/housingunits/{housingunitid}':
     put:
       tags: ['housing units']
@@ -2334,7 +2334,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                      
+          default: 30                      
   '/housingunits/{housingunitid}/reservations/{reservationid}':
     put:
       tags: ['housingUnit-reservations']
@@ -2537,7 +2537,7 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 20                      
+          default: 30                      
   '/housingunits/{housingunitid}/occupants/{occupantid}':
     put:
       tags: ['housingUnit-occupants']

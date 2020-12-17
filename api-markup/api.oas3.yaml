@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.1.4"
+  version: "1.2.0"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -995,12 +995,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -1011,8 +1009,8 @@ paths:
             example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
       responses:
         '200':
           description: Success
@@ -1049,15 +1047,13 @@ paths:
                             reservations:
                                 items:
                                     properties:
-                                        reservationEndDateDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        endDate:
+                                            type: integer
                                         id:
                                             type: string
                                             format: uuid
-                                        reservationStateDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        startDate:
+                                            type: integer
                                         reservedClientId:
                                             type: string
                                             format: uuid
@@ -1076,8 +1072,8 @@ paths:
                     reservations:
                     - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                       reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      reservationStateDate: '2020-08-22'
-                      reservationEndDateDate: '2020-10-22'
+                      startDate: 1602095400000
+                      endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get all room reservations
       parameters:
@@ -1095,6 +1091,18 @@ paths:
          schema:
           type: integer          
           default: 30                      
+       - name: fromdate
+         in: query
+         required: false
+         description: Filter reservations. fromdate value in milliseconds.
+         schema:
+          type: integer          
+       - name: todate
+         in: query
+         required: false
+         description: Filter reservations. todate value in milliseconds.
+         schema:
+          type: integer                    
   '/shelters/{shelterid}/areas/{areaid}/rooms/{roomid}/reservations/{reservationid}':
     put:
       tags:  ['room-reservations']
@@ -1111,12 +1119,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -1127,8 +1133,8 @@ paths:
             example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
         required: true
     get:
       tags:  ['room-reservations']
@@ -1139,12 +1145,10 @@ paths:
             application/json:
                 schema:
                     properties:
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -1158,8 +1162,8 @@ paths:
                 example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get selected room reservation
     delete:
@@ -1596,12 +1600,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -1612,8 +1614,8 @@ paths:
             example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
       responses:
         '200':
           description: Success
@@ -1650,15 +1652,13 @@ paths:
                             reservations:
                                 items:
                                     properties:
-                                        reservationEndDateDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        endDate:
+                                            type: integer
                                         id:
                                             type: string
                                             format: uuid
-                                        reservationStateDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        startDate:
+                                            type: integer
                                         reservedClientId:
                                             type: string
                                             format: uuid
@@ -1677,8 +1677,8 @@ paths:
                     reservations:
                     - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                       reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      reservationStateDate: '2020-08-22'
-                      reservationEndDateDate: '2020-10-22'
+                      startDate: 1602095400000
+                      endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get all bed unit reservations
       parameters:
@@ -1695,7 +1695,19 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 30                      
+          default: 30       
+       - name: fromdate
+         in: query
+         required: false
+         description: Filter reservations. fromdate value in milliseconds.
+         schema:
+          type: integer          
+       - name: todate
+         in: query
+         required: false
+         description: Filter reservations. todate value in milliseconds.
+         schema:
+          type: integer                              
   '/bedunits/{bedunitid}/reservations/{reservationid}':
     put:
       tags: ['bedunit-reservations']
@@ -1712,12 +1724,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -1728,8 +1738,8 @@ paths:
             example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
         required: true
     get:
       tags: ['bedunit-reservations']
@@ -1750,12 +1760,10 @@ paths:
                                         type: integer
                                 total:
                                         type: integer                                    
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -1769,8 +1777,8 @@ paths:
                 example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get selected bed unit reservation
       parameters:
@@ -1824,12 +1832,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        occupancyEndDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        occupancyStartDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         clientId:
                             type: string
                             format: uuid
@@ -1840,8 +1846,8 @@ paths:
             example:
                     clientId: 480ea107-def2-4003-a76a-7210b0001424
                     enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    occupancyStartDate: '2020-08-22'
-                    occupancyEndDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
       responses:
         '200':
           description: Success
@@ -1875,18 +1881,16 @@ paths:
                                             type: integer
                                     total:
                                             type: integer                                        
-                            reservations:
+                            occupants:
                                 items:
                                     properties:
-                                        occupancyEndDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        endDate:
+                                            type: integer
                                         id:
                                             type: string
                                             format: uuid
-                                        occupancyStartDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        startDate:
+                                            type: integer
                                         clientId:
                                             type: string
                                             format: uuid
@@ -1902,11 +1906,11 @@ paths:
                       returned: 2
                       total: 67
                       maximum: 30                                
-                    reservations:
+                    occupants:
                     - clientId: 480ea107-def2-4003-a76a-7210b0001424
                       enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      occupancyStartDate: '2020-08-22'
-                      occupancyEndDate: '2020-10-22'
+                      startDate: 1602095400000
+                      endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       parameters:
        - name: page
@@ -1922,7 +1926,19 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 30                                      
+          default: 30       
+       - name: fromdate
+         in: query
+         required: false
+         description: Filter occupants. fromdate value in milliseconds.
+         schema:
+          type: integer          
+       - name: todate
+         in: query
+         required: false
+         description: Filter occupants. todate value in milliseconds.
+         schema:
+          type: integer                              
       description: Get all bed unit occupants
   '/bedunits/{bedunitid}/occupants/{occupantid}':
     put:
@@ -1940,12 +1956,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        occupancyEndDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        occupancyStartDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         clientId:
                             type: string
                             format: uuid
@@ -1956,8 +1970,8 @@ paths:
             example:
                     clientId: 480ea107-def2-4003-a76a-7210b0001424
                     enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    occupancyStartDate: '2020-08-22'
-                    occupancyEndDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
         required: true
     get:
       tags: ['bedunit-occupants']
@@ -1968,12 +1982,10 @@ paths:
             application/json:
                 schema:
                     properties:
-                        occupancyEndDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        occupancyStartDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         clientId:
                             type: string
                             format: uuid
@@ -1987,8 +1999,8 @@ paths:
                 example:
                     clientId: 480ea107-def2-4003-a76a-7210b0001424
                     enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    occupancyStartDate: '2020-08-22'
-                    occupancyEndDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get selected bed unit occupant
     delete:
@@ -2241,12 +2253,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -2257,8 +2267,8 @@ paths:
             example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
       responses:
         '200':
           description: Success
@@ -2295,15 +2305,13 @@ paths:
                             reservations:
                                 items:
                                     properties:
-                                        reservationEndDateDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        endDate:
+                                            type: integer
                                         id:
                                             type: string
                                             format: uuid
-                                        reservationStateDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        startDate:
+                                            type: integer
                                         reservedClientId:
                                             type: string
                                             format: uuid
@@ -2322,8 +2330,8 @@ paths:
                     reservations:
                     - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                       reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      reservationStateDate: '2020-08-22'
-                      reservationEndDateDate: '2020-10-22'
+                      startDate: 1602095400000
+                      endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get all housing unit reservations
       parameters:
@@ -2357,12 +2365,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -2373,8 +2379,8 @@ paths:
             example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
         required: true
     get:
       tags: ['housingUnit-reservations']
@@ -2385,12 +2391,10 @@ paths:
             application/json:
                 schema:
                     properties:
-                        reservationEndDateDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        reservationStateDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         reservedClientId:
                             type: string
                             format: uuid
@@ -2404,8 +2408,8 @@ paths:
                 example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
                     reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    reservationStateDate: '2020-08-22'
-                    reservationEndDateDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get selected housing unit reservation
     delete:
@@ -2444,12 +2448,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        occupancyEndDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        occupancyStartDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         clientId:
                             type: string
                             format: uuid
@@ -2460,8 +2462,8 @@ paths:
             example:
                     clientId: 480ea107-def2-4003-a76a-7210b0001424
                     enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    occupancyStartDate: '2020-08-22'
-                    occupancyEndDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
       responses:
         '200':
           description: Success
@@ -2498,15 +2500,13 @@ paths:
                             reservations:
                                 items:
                                     properties:
-                                        occupancyEndDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        endDate:
+                                            type: integer
                                         id:
                                             type: string
                                             format: uuid
-                                        occupancyStartDate:
-                                            type: string
-                                            format: yyyy-MM-dd
+                                        startDate:
+                                            type: integer
                                         clientId:
                                             type: string
                                             format: uuid
@@ -2525,8 +2525,8 @@ paths:
                     reservations:
                     - clientId: 480ea107-def2-4003-a76a-7210b0001424
                       enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      occupancyStartDate: '2020-08-22'
-                      occupancyEndDate: '2020-10-22'
+                      startDate: 1602095400000
+                      endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get all housing unit occupants
       parameters:
@@ -2560,12 +2560,10 @@ paths:
           application/json:
             schema:
                     properties:
-                        occupancyEndDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        occupancyStartDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         clientId:
                             type: string
                             format: uuid
@@ -2576,8 +2574,8 @@ paths:
             example:
                     clientId: 480ea107-def2-4003-a76a-7210b0001424
                     enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    occupancyStartDate: '2020-08-22'
-                    occupancyEndDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
         required: true
     get:
       tags: ['housingUnit-occupants']
@@ -2588,12 +2586,10 @@ paths:
             application/json:
                 schema:
                     properties:
-                        occupancyEndDate:
-                            type: string
-                            format: yyyy-MM-dd
-                        occupancyStartDate:
-                            type: string
-                            format: yyyy-MM-dd
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
                         clientId:
                             type: string
                             format: uuid
@@ -2607,8 +2603,8 @@ paths:
                 example:
                     clientId: 480ea107-def2-4003-a76a-7210b0001424
                     enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                    occupancyStartDate: '2020-08-22'
-                    occupancyEndDate: '2020-10-22'
+                    startDate: 1602095400000
+                    endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
       description: Get selected housing unit occupant
     delete:

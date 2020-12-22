@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.3.0"
+  version: "1.4.0"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -1225,6 +1225,29 @@ paths:
                                         reservedHouseholdId:
                                             type: string
                                             format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                            
                                     type: object
                                 type: array
                         type: object
@@ -1240,6 +1263,17 @@ paths:
                       startDate: 1602095400000
                       endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013
       description: Get all room reservations
       parameters:
        - name: page
@@ -1323,6 +1357,29 @@ paths:
                         id:
                             type: string
                             format: uuid
+                        client:
+                            properties:
+                                clientId:
+                                    type: string
+                                dedupClientId:
+                                    type: string
+                                dob:
+                                    type: integer
+                                firstName:
+                                    type: string
+                                lastName:
+                                    type: string
+                                link:
+                                    type: string
+                                middleName:
+                                    type: string
+                                nameSuffix:
+                                    type: string
+                                projectGroupCode:
+                                    type: string
+                                ssn:
+                                    type: string
+                            type: object                                                                        
                     type: object
                 example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
@@ -1330,6 +1387,17 @@ paths:
                     startDate: 1602095400000
                     endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                    client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013
       description: Get selected room reservation
     delete:
       tags:  ['room-reservations']
@@ -1886,6 +1954,29 @@ paths:
                                         reservedHouseholdId:
                                             type: string
                                             format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                                                                        
                                     type: object
                                 type: array
                         type: object
@@ -1901,6 +1992,17 @@ paths:
                       startDate: 1602095400000
                       endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013                      
       description: Get all bed unit reservations
       parameters:
        - name: page
@@ -1971,16 +2073,6 @@ paths:
             application/json:
                 schema:
                     properties:
-                        pagination:
-                            properties:
-                                from:
-                                        type: integer                                
-                                maximum:
-                                        type: integer                                
-                                returned:
-                                        type: integer
-                                total:
-                                        type: integer                                    
                         endDate:
                             type: integer
                         startDate:
@@ -1994,6 +2086,29 @@ paths:
                         id:
                             type: string
                             format: uuid
+                        client:
+                            properties:
+                                clientId:
+                                    type: string
+                                dedupClientId:
+                                    type: string
+                                dob:
+                                    type: integer
+                                firstName:
+                                    type: string
+                                lastName:
+                                    type: string
+                                link:
+                                    type: string
+                                middleName:
+                                    type: string
+                                nameSuffix:
+                                    type: string
+                                projectGroupCode:
+                                    type: string
+                                ssn:
+                                    type: string
+                            type: object                                                                        
                     type: object
                 example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
@@ -2001,6 +2116,17 @@ paths:
                     startDate: 1602095400000
                     endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                    client:
+                      clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                      dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                      firstName: Ryan_1565531680191
+                      middleName: ''
+                      lastName: Peterson_1565531680191
+                      nameSuffix: NS
+                      ssn: 123-45-6789
+                      dob: 340009200000
+                      link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                      projectGroupCode: TT0013                    
       description: Get selected bed unit reservation
       parameters:
        - name: page
@@ -2118,6 +2244,29 @@ paths:
                                         enrollmentId:
                                             type: string
                                             format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                                                                        
                                     type: object
                                 type: array
                         type: object
@@ -2133,6 +2282,17 @@ paths:
                       startDate: 1602095400000
                       endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013                      
       parameters:
        - name: page
          in: query
@@ -2216,6 +2376,29 @@ paths:
                         id:
                             type: string
                             format: uuid
+                        client:
+                            properties:
+                                clientId:
+                                    type: string
+                                dedupClientId:
+                                    type: string
+                                dob:
+                                    type: integer
+                                firstName:
+                                    type: string
+                                lastName:
+                                    type: string
+                                link:
+                                    type: string
+                                middleName:
+                                    type: string
+                                nameSuffix:
+                                    type: string
+                                projectGroupCode:
+                                    type: string
+                                ssn:
+                                    type: string
+                            type: object                                                                        
                     type: object
                 example:
                     clientId: 480ea107-def2-4003-a76a-7210b0001424
@@ -2223,6 +2406,17 @@ paths:
                     startDate: 1602095400000
                     endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                    client:
+                      clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                      dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                      firstName: Ryan_1565531680191
+                      middleName: ''
+                      lastName: Peterson_1565531680191
+                      nameSuffix: NS
+                      ssn: 123-45-6789
+                      dob: 340009200000
+                      link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                      projectGroupCode: TT0013                    
       description: Get selected bed unit occupant
     delete:
       tags: ['bedunit-occupants']
@@ -2539,6 +2733,29 @@ paths:
                                         reservedHouseholdId:
                                             type: string
                                             format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                                                                        
                                     type: object
                                 type: array
                         type: object
@@ -2554,6 +2771,17 @@ paths:
                       startDate: 1602095400000
                       endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013                      
       description: Get all housing unit reservations
       parameters:
        - name: page
@@ -2625,6 +2853,29 @@ paths:
                         id:
                             type: string
                             format: uuid
+                        client:
+                            properties:
+                                clientId:
+                                    type: string
+                                dedupClientId:
+                                    type: string
+                                dob:
+                                    type: integer
+                                firstName:
+                                    type: string
+                                lastName:
+                                    type: string
+                                link:
+                                    type: string
+                                middleName:
+                                    type: string
+                                nameSuffix:
+                                    type: string
+                                projectGroupCode:
+                                    type: string
+                                ssn:
+                                    type: string
+                            type: object                                                                        
                     type: object
                 example:
                     reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
@@ -2632,6 +2883,17 @@ paths:
                     startDate: 1602095400000
                     endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                    client:
+                      clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                      dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                      firstName: Ryan_1565531680191
+                      middleName: ''
+                      lastName: Peterson_1565531680191
+                      nameSuffix: NS
+                      ssn: 123-45-6789
+                      dob: 340009200000
+                      link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                      projectGroupCode: TT0013                    
       description: Get selected housing unit reservation
     delete:
       tags: ['housingUnit-reservations']
@@ -2734,6 +2996,29 @@ paths:
                                         enrollmentId:
                                             type: string
                                             format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                                                                        
                                     type: object
                                 type: array
                         type: object
@@ -2749,6 +3034,17 @@ paths:
                       startDate: 1602095400000
                       endDate: 1607365800000
                       id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013                      
       description: Get all housing unit occupants
       parameters:
        - name: page
@@ -2820,6 +3116,29 @@ paths:
                         id:
                             type: string
                             format: uuid
+                        client:
+                            properties:
+                                clientId:
+                                    type: string
+                                dedupClientId:
+                                    type: string
+                                dob:
+                                    type: integer
+                                firstName:
+                                    type: string
+                                lastName:
+                                    type: string
+                                link:
+                                    type: string
+                                middleName:
+                                    type: string
+                                nameSuffix:
+                                    type: string
+                                projectGroupCode:
+                                    type: string
+                                ssn:
+                                    type: string
+                            type: object                                                                        
                     type: object
                 example:
                     clientId: 480ea107-def2-4003-a76a-7210b0001424
@@ -2827,6 +3146,17 @@ paths:
                     startDate: 1602095400000
                     endDate: 1607365800000
                     id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                    client:
+                      clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                      dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                      firstName: Ryan_1565531680191
+                      middleName: ''
+                      lastName: Peterson_1565531680191
+                      nameSuffix: NS
+                      ssn: 123-45-6789
+                      dob: 340009200000
+                      link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                      projectGroupCode: TT0013                    
       description: Get selected housing unit occupant
     delete:
       tags: ['housingUnit-occupants']

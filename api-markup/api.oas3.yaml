@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.4.0"
+  version: "1.5.0"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -160,7 +160,16 @@ paths:
                                     longitude:
                                         type: string                            
                                     latitude:
-                                        type: string                                                                                                
+                                        type: string       
+                                    summary:
+                                        properties:
+                                            totalAreas:
+                                                type: integer
+                                            totalBeds:
+                                                type: integer
+                                            totalRooms:
+                                                type: integer
+                                        type: object                                        
                                 type: object
                             type: array
                     type: object
@@ -196,7 +205,11 @@ paths:
                       state: jMVcs
                       zipcode: 35829
                       longitude: 38.907192
-                      latitude: 77.036873                      
+                      latitude: 77.036873   
+                      summary:
+                       totalAreas: 3
+                       totalRooms: 5
+                       totalBeds: 20                      
                     - id: 02e7fcc9-9687-4e57-9154-99fb0723f618
                       name: TKVcq
                       address: wDbZc
@@ -206,6 +219,10 @@ paths:
                       description: ctbPi
                       occupantCapacity: 5
                       isActive: true
+                      summary:
+                        totalAreas: 3
+                        totalRooms: 4
+                        totalBeds: 12
       description: Get all shelter
       operationId: GET_all_shelter
       parameters:
@@ -2979,8 +2996,8 @@ paths:
                                     returned:
                                             type: integer
                                     total:
-                                            type: integer                              
-                            reservations:
+                                            type: integer                                        
+                            occupants:
                                 items:
                                     properties:
                                         endDate:
@@ -3027,8 +3044,8 @@ paths:
                       from: 0
                       returned: 2
                       total: 67
-                      maximum: 30                                                
-                    reservations:
+                      maximum: 30                                
+                    occupants:
                     - clientId: 480ea107-def2-4003-a76a-7210b0001424
                       enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
                       startDate: 1602095400000
@@ -3177,6 +3194,594 @@ paths:
         schema:
           type: string
           format: uuid
+  '/clients/{clientid}/bedunits/reservations':
+    parameters:
+      - name: clientid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags: ['clients']
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
+                            reservations:
+                                items:
+                                    properties:
+                                        endDate:
+                                            type: integer
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        startDate:
+                                            type: integer
+                                        reservedClientId:
+                                            type: string
+                                            format: uuid
+                                        reservedHouseholdId:
+                                            type: string
+                                            format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                                                                        
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
+                    reservations:
+                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                      reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      startDate: 1602095400000
+                      endDate: 1607365800000
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013                      
+      description: Get all bed unit reservations of a specific client
+      parameters:
+       - name: page
+         in: query
+         required: false
+         description: page number (start with 0)
+         schema:
+          type: integer
+          default: 0
+       - name: size
+         in: query
+         required: false
+         description: number records in a page
+         schema:
+          type: integer          
+          default: 30       
+       - name: fromdate
+         in: query
+         required: false
+         description: Filter reservations. fromdate value in milliseconds.
+         schema:
+          type: integer          
+       - name: todate
+         in: query
+         required: false
+         description: Filter reservations. todate value in milliseconds.
+         schema:
+          type: integer           
+  '/clients/{clientid}/rooms/reservations':
+    parameters:
+      - name: clientid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:  ['clients']
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
+                            reservations:
+                                items:
+                                    properties:
+                                        endDate:
+                                            type: integer
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        startDate:
+                                            type: integer
+                                        reservedClientId:
+                                            type: string
+                                            format: uuid
+                                        reservedHouseholdId:
+                                            type: string
+                                            format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                            
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
+                    reservations:
+                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                      reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      startDate: 1602095400000
+                      endDate: 1607365800000
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013
+      description: Get all room reservations for a specific client
+      parameters:
+       - name: page
+         in: query
+         required: false
+         description: page number (start with 0)
+         schema:
+          type: integer
+          default: 0
+       - name: size
+         in: query
+         required: false
+         description: number records in a page
+         schema:
+          type: integer          
+          default: 30                      
+       - name: fromdate
+         in: query
+         required: false
+         description: Filter reservations. fromdate value in milliseconds.
+         schema:
+          type: integer          
+       - name: todate
+         in: query
+         required: false
+         description: Filter reservations. todate value in milliseconds.
+         schema:
+          type: integer      
+  '/clients/{clientid}/housingunits/reservations':
+    parameters:
+      - name: clientid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags: ['clients']
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                              
+                            reservations:
+                                items:
+                                    properties:
+                                        endDate:
+                                            type: integer
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        startDate:
+                                            type: integer
+                                        reservedClientId:
+                                            type: string
+                                            format: uuid
+                                        reservedHouseholdId:
+                                            type: string
+                                            format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                                                                        
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
+                    reservations:
+                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                      reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      startDate: 1602095400000
+                      endDate: 1607365800000
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013                      
+      description: Get all housing unit reservations for a specific client
+      parameters:
+       - name: page
+         in: query
+         required: false
+         description: page number (start with 0)
+         schema:
+          type: integer
+          default: 0
+       - name: size
+         in: query
+         required: false
+         description: number records in a page
+         schema:
+          type: integer          
+          default: 30               
+  '/clients/{clientid}/bedunits/occupants':
+    parameters:
+      - name: clientid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags: ['clients']
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
+                            occupants:
+                                items:
+                                    properties:
+                                        endDate:
+                                            type: integer
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        startDate:
+                                            type: integer
+                                        clientId:
+                                            type: string
+                                            format: uuid
+                                        enrollmentId:
+                                            type: string
+                                            format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                                                                        
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
+                    occupants:
+                    - clientId: 480ea107-def2-4003-a76a-7210b0001424
+                      enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      startDate: 1602095400000
+                      endDate: 1607365800000
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013                      
+      parameters:
+       - name: page
+         in: query
+         required: false
+         description: page number (start with 0)
+         schema:
+          type: integer
+          default: 0
+       - name: size
+         in: query
+         required: false
+         description: number records in a page
+         schema:
+          type: integer          
+          default: 30       
+       - name: fromdate
+         in: query
+         required: false
+         description: Filter occupants. fromdate value in milliseconds.
+         schema:
+          type: integer          
+       - name: todate
+         in: query
+         required: false
+         description: Filter occupants. todate value in milliseconds.
+         schema:
+          type: integer                              
+      description: Get all bed unit occupants for a specific client          
+  '/clients/{clientid}/housingunits/occupants':
+    parameters:
+      - name: clientid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags: ['clients']
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                        properties:
+                            pagination:
+                                properties:
+                                    from:
+                                            type: integer                                
+                                    maximum:
+                                            type: integer                                
+                                    returned:
+                                            type: integer
+                                    total:
+                                            type: integer                                        
+                            occupants:
+                                items:
+                                    properties:
+                                        endDate:
+                                            type: integer
+                                        id:
+                                            type: string
+                                            format: uuid
+                                        startDate:
+                                            type: integer
+                                        clientId:
+                                            type: string
+                                            format: uuid
+                                        enrollmentId:
+                                            type: string
+                                            format: uuid
+                                        client:
+                                            properties:
+                                                clientId:
+                                                    type: string
+                                                dedupClientId:
+                                                    type: string
+                                                dob:
+                                                    type: integer
+                                                firstName:
+                                                    type: string
+                                                lastName:
+                                                    type: string
+                                                link:
+                                                    type: string
+                                                middleName:
+                                                    type: string
+                                                nameSuffix:
+                                                    type: string
+                                                projectGroupCode:
+                                                    type: string
+                                                ssn:
+                                                    type: string
+                                            type: object                                                                                        
+                                    type: object
+                                type: array
+                        type: object
+                example:
+                    pagination:
+                      from: 0
+                      returned: 2
+                      total: 67
+                      maximum: 30                                
+                    occupants:
+                    - clientId: 480ea107-def2-4003-a76a-7210b0001424
+                      enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                      startDate: 1602095400000
+                      endDate: 1607365800000
+                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      client:
+                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                          firstName: Ryan_1565531680191
+                          middleName: ''
+                          lastName: Peterson_1565531680191
+                          nameSuffix: NS
+                          ssn: 123-45-6789
+                          dob: 340009200000
+                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                          projectGroupCode: TT0013                      
+      parameters:
+       - name: page
+         in: query
+         required: false
+         description: page number (start with 0)
+         schema:
+          type: integer
+          default: 0
+       - name: size
+         in: query
+         required: false
+         description: number records in a page
+         schema:
+          type: integer          
+          default: 30       
+       - name: fromdate
+         in: query
+         required: false
+         description: Filter occupants. fromdate value in milliseconds.
+         schema:
+          type: integer          
+       - name: todate
+         in: query
+         required: false
+         description: Filter occupants. todate value in milliseconds.
+         schema:
+          type: integer                              
+      description: Get all housing unit occupants for a specific client
 components:
   schemas: {}
   responses: {}

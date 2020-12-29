@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.5.0"
+  version: "1.5.1"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -2179,7 +2179,7 @@ paths:
         schema:
           type: string
           format: uuid
-  '/bedunits/{bedunitid}/occupants':
+  '/bedunits/{bedunitid}/checkin':
     parameters:
       - name: bedunitid
         in: path
@@ -2189,7 +2189,7 @@ paths:
           format: uuid
     post:
       tags: ['bedunit-occupants']
-      description: Create a bed unit occupant
+      description: |
       requestBody:
         required: true
         content:
@@ -2226,6 +2226,14 @@ paths:
 
                 example:
                     id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+  '/bedunits/{bedunitid}/occupants':
+    parameters:
+      - name: bedunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid  
     get:
       tags: ['bedunit-occupants']
       responses:
@@ -2338,6 +2346,39 @@ paths:
          schema:
           type: integer                              
       description: Get all bed unit occupants
+  '/bedunits/{bedunitid}/checkout':
+    parameters:
+      - name: bedunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid  
+    put:
+      tags: ['bedunit-occupants']
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |
+      description: Bed unit checkout
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        checkoutDate:
+                            type: integer                            
+                        clientId:
+                            type: string
+                            format: uuid
+                    type: object
+            example:
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    checkoutDate: 1602095400000
+        required: true
   '/bedunits/{bedunitid}/occupants/{occupantid}':
     put:
       tags: ['bedunit-occupants']

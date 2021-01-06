@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.6.0"
+  version: "1.6.1"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -2531,6 +2531,20 @@ paths:
                             format : uuid
                         projectType:
                             type: string
+                        address1:
+                            type: string                            
+                        address2:
+                            type: string          
+                        city:
+                            type: string                            
+                        state:
+                            type: string                            
+                        zipcode:
+                            type: string                            
+                        longitude:
+                            type: string                            
+                        latitude:
+                            type: string                              
                     type: object
             example:
                     name: unit 1
@@ -2539,6 +2553,14 @@ paths:
                     projectType: 2
                     description: unit 1 with 10 beds
                     occupantCapacity: '5'
+                    address1: dPhnt
+                    address2:"jLTuB
+                    city: KYUUj 
+                    state: aETPQ
+                    zipcode:1245
+                    longitude: "38.907192"
+                    latitude: "-77.036873"
+
       responses:
         '200':
           description: Success
@@ -2593,6 +2615,20 @@ paths:
                                         format: uuid
                                     projectType:
                                         type: string
+                                    address1:
+                                        type: string                            
+                                    address2:
+                                        type: string          
+                                    city:
+                                        type: string                            
+                                    state:
+                                        type: string                            
+                                    zipcode:
+                                        type: string                            
+                                    longitude:
+                                        type: string                            
+                                    latitude:
+                                        type: string                                          
                                 type: object
                             type: array
                     type: object
@@ -2612,6 +2648,13 @@ paths:
                       description: IrJKa
                       occupantCapacity: 5
                       isActive: true
+                      address1: dPhnt
+                      address2:"jLTuB
+                      city: KYUUj 
+                      state: aETPQ
+                      zipcode:1245
+                      longitude: "38.907192"
+                      latitude: "-77.036873"                      
                     - id: 02e7fcc9-9687-4e57-9154-99fb0723f618
                       name: TKVcq
                       address: wDbZc
@@ -2635,7 +2678,13 @@ paths:
          description: number records in a page
          schema:
           type: integer          
-          default: 30                      
+          default: 30          
+       - name: q
+         in: query
+         required: false
+         description: Query string to filter housing units data. Currently filter is applied on address, name , city, state and zipcode
+         schema:
+          type: string                    
   '/housingunits/{housingunitid}':
     put:
       tags: ['housing units']
@@ -2665,6 +2714,20 @@ paths:
                             format : uuid
                         projectType:
                             type: string
+                        address1:
+                            type: string                            
+                        address2:
+                            type: string          
+                        city:
+                            type: string                            
+                        state:
+                            type: string                            
+                        zipcode:
+                            type: string                            
+                        longitude:
+                            type: string                            
+                        latitude:
+                            type: string                              
                     type: object
             example:
                     name: unit 2
@@ -2673,6 +2736,13 @@ paths:
                     projectType: 2
                     description: unit with 10 beds
                     occupantCapacity: '5'
+                    address1: dPhnt
+                    address2:"jLTuB
+                    city: KYUUj 
+                    state: aETPQ
+                    zipcode:1245
+                    longitude: "38.907192"
+                    latitude: "-77.036873"                    
         required: true
     get:
       tags: ['housing units']
@@ -2699,6 +2769,20 @@ paths:
                             format : uuid
                         projectType:
                             type: string
+                        address1:
+                            type: string                            
+                        address2:
+                            type: string          
+                        city:
+                            type: string                            
+                        state:
+                            type: string                            
+                        zipcode:
+                            type: string                            
+                        longitude:
+                            type: string                            
+                        latitude:
+                            type: string                              
                     type: object
                 example:
                     id: 6f9dafea-f0d3-4f31-986c-fc489d24a343
@@ -2708,6 +2792,13 @@ paths:
                     projectType: 2
                     description: unit with 10 beds
                     occupantCapacity: '5'
+                    address1: dPhnt
+                    address2:"jLTuB
+                    city: KYUUj 
+                    state: aETPQ
+                    zipcode:1245
+                    longitude: "38.907192"
+                    latitude: "-77.036873"                    
       description: Get selected housing unit
     delete:
       tags: ['housing units']

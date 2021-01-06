@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.5.1"
+  version: "1.6.0"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -1482,12 +1482,16 @@ paths:
                         type: integer
                     overflow:
                         type: boolean
+                    name:
+                        type: string
                 type: object
 
             example:
                 occupantCapacity: 5
                 occupancy: true
                 overflow: true
+                name: Bedunit-9
+
       responses:
         '200':
           description: Success
@@ -1553,6 +1557,8 @@ paths:
                                             type: integer
                                         overflow:
                                             type: boolean
+                                        name:
+                                            type: string
                                         room:
                                             properties:
                                                 area:
@@ -1641,6 +1647,7 @@ paths:
                       occupantCapacity: 5
                       overflow: true
                       isActive: true
+                      name: Bedunit-9                      
                       room:
                         id: f9a0a07a-d630-4e76-a29c-9424ee7e0890
                         name: qiPoF
@@ -1707,12 +1714,15 @@ paths:
                         type: integer
                     overflow:
                         type: boolean
+                    name:
+                        type: string  
                 type: object
 
             example:
                 occupantCapacity: 5
                 occupancy: true
                 overflow: true
+                name: Bedunit-9                
         required: true
     get:
       tags: ['bedunits']
@@ -1733,6 +1743,8 @@ paths:
                                 type: integer
                             overflow:
                                 type: boolean
+                            name:
+                                type: string
                             room:
                                 properties:
                                     area:
@@ -1819,6 +1831,7 @@ paths:
                     occupantCapacity: 5
                     overflow: true
                     isActive: true
+                    name: Bedunit-9                    
                     room:
                       id: f9a0a07a-d630-4e76-a29c-9424ee7e0890
                       name: qiPoF
@@ -3251,7 +3264,7 @@ paths:
           content:
             application/json:
                 schema:
-                        $schema: http://json-schema.org/draft-07/schema
+                         
                         properties:
                             bedUnitReservations:
                                 items:
@@ -3266,6 +3279,8 @@ paths:
                                                     type: integer
                                                 overflow:
                                                     type: boolean
+                                                name:
+                                                    type: string
                                                 room:
                                                     properties:
                                                         area:
@@ -3363,8 +3378,6 @@ paths:
                                         type: integer
                                     returned:
                                         type: integer
-                                    sort:
-                                        type: 'null'
                                     total:
                                         type: integer
                                 type: object
@@ -3377,7 +3390,6 @@ paths:
                           returned: 2
                           total: 248
                           maximum: 30
-                          sort:
                         bedUnitReservations:
                         - id: 24c70055-dc35-4b8d-9bc6-4befc9abdf72
                           reservedClientId: 35f4fe3d-bfd6-40db-819b-821446efd165
@@ -3400,6 +3412,7 @@ paths:
                             occupancy: true
                             occupantCapacity: 5
                             overflow: true
+                            name: Bedunit-9
                             room:
                               id: 95106841-c174-4d4f-b472-fa279b2a77b3
                               name: tqxKx
@@ -3469,7 +3482,7 @@ paths:
           content:
             application/json:
                 schema:
-                    $schema: http://json-schema.org/draft-07/schema
+                     
                     properties:
                         pagination:
                             properties:
@@ -3479,8 +3492,6 @@ paths:
                                     type: integer
                                 returned:
                                     type: integer
-                                sort:
-                                    type: 'null'
                                 total:
                                     type: integer
                             type: object
@@ -3584,7 +3595,6 @@ paths:
                           returned: 2
                           total: 31
                           maximum: 30
-                          sort:
                         roomReservations:
                         - id: 90201ccb-2cef-4538-a3f9-7cd84999bd50
                           reservedClientId: 35f4fe3d-bfd6-40db-819b-821446efd165
@@ -3742,7 +3752,6 @@ paths:
                       returned: 2
                       total: 27
                       maximum: 30
-                      sort:
                     housingUnitReservations:
                     - id: 15603a3d-8d76-4590-aae4-2e753684c281
                       reservedClientId: 35f4fe3d-bfd6-40db-819b-821446efd165
@@ -3798,121 +3807,125 @@ paths:
           content:
             application/json:
                 schema:
-                            properties:
-                                occupants:
-                                    items:
+                     
+                    properties:
+                        occupants:
+                            items:
+                                properties:
+                                    bedUnit:
                                         properties:
-                                            client:
+                                            id:
+                                                type: string
+                                            name:
+                                                type: string
+                                            occupancy:
+                                                type: boolean
+                                            occupantCapacity:
+                                                type: integer
+                                            overflow:
+                                                type: boolean
+                                            room:
                                                 properties:
-                                                    bedUnit:
+                                                    area:
                                                         properties:
+                                                            description:
+                                                                type: string
                                                             id:
                                                                 type: string
-                                                            occupancy:
-                                                                type: boolean
+                                                            name:
+                                                                type: string
                                                             occupantCapacity:
                                                                 type: integer
-                                                            overflow:
-                                                                type: boolean
-                                                            room:
+                                                            shelter:
                                                                 properties:
-                                                                    area:
-                                                                        properties:
-                                                                            description:
-                                                                                type: string
-                                                                            id:
-                                                                                type: string
-                                                                            name:
-                                                                                type: string
-                                                                            occupantCapacity:
-                                                                                type: integer
-                                                                            shelter:
-                                                                                properties:
-                                                                                    address:
-                                                                                        type: string
-                                                                                    address1:
-                                                                                        type: string
-                                                                                    address2:
-                                                                                        type: string
-                                                                                    city:
-                                                                                        type: string
-                                                                                    description:
-                                                                                        type: string
-                                                                                    id:
-                                                                                        type: string
-                                                                                    latitude:
-                                                                                        type: string
-                                                                                    longitude:
-                                                                                        type: string
-                                                                                    name:
-                                                                                        type: string
-                                                                                    occupantCapacity:
-                                                                                        type: integer
-                                                                                    projectId:
-                                                                                        type: string
-                                                                                    projectType:
-                                                                                        type: string
-                                                                                    state:
-                                                                                        type: string
-                                                                                    url:
-                                                                                        type: string
-                                                                                    zipcode:
-                                                                                        type: string
-                                                                                type: object
-                                                                        type: object
+                                                                    address:
+                                                                        type: string
+                                                                    address1:
+                                                                        type: string
+                                                                    address2:
+                                                                        type: string
+                                                                    city:
+                                                                        type: string
+                                                                    description:
+                                                                        type: string
                                                                     id:
+                                                                        type: string
+                                                                    latitude:
+                                                                        type: string
+                                                                    longitude:
                                                                         type: string
                                                                     name:
                                                                         type: string
                                                                     occupantCapacity:
                                                                         type: integer
+                                                                    projectId:
+                                                                        type: string
+                                                                    projectType:
+                                                                        type: string
+                                                                    state:
+                                                                        type: string
+                                                                    url:
+                                                                        type: string
+                                                                    zipcode:
+                                                                        type: string
                                                                 type: object
                                                         type: object
-                                                    clientId:
+                                                    id:
                                                         type: string
-                                                    dedupClientId:
+                                                    name:
                                                         type: string
-                                                    dob:
+                                                    occupantCapacity:
                                                         type: integer
-                                                    firstName:
-                                                        type: string
-                                                    lastName:
-                                                        type: string
-                                                    link:
-                                                        type: string
-                                                    middleName:
-                                                        type: string
-                                                    nameSuffix:
-                                                        type: string
-                                                    projectGroupCode:
-                                                        type: string
-                                                    ssn:
-                                                        type: string
                                                 type: object
+                                        type: object
+                                    client:
+                                        properties:
                                             clientId:
                                                 type: string
-                                            endDate:
-                                                type: integer
-                                            enrollmentId:
+                                            dedupClientId:
                                                 type: string
-                                            id:
-                                                type: string
-                                            startDate:
+                                            dob:
                                                 type: integer
+                                            firstName:
+                                                type: string
+                                            lastName:
+                                                type: string
+                                            link:
+                                                type: string
+                                            middleName:
+                                                type: string
+                                            nameSuffix:
+                                                type: string
+                                            projectGroupCode:
+                                                type: string
+                                            ssn:
+                                                type: string
                                         type: object
-                                    type: array
-                                pagination:
-                                    properties:
-                                        from:
-                                            type: integer
-                                        maximum:
-                                            type: integer
-                                        returned:
-                                            type: integer
-                                        total:
-                                            type: integer
-                                    type: object
+                                    clientId:
+                                        type: string
+                                    endDate:
+                                        type: integer
+                                    enrollmentId:
+                                        type: string
+                                    id:
+                                        type: string
+                                    startDate:
+                                        type: integer
+                                type: object
+                            type: array
+                        pagination:
+                            properties:
+                                from:
+                                    type: integer
+                                maximum:
+                                    type: integer
+                                returned:
+                                    type: integer
+                                total:
+                                    type: integer
                             type: object
+                    type: object
+
                 example:
                     pagination:
                       from: 0
@@ -3936,36 +3949,37 @@ paths:
                           dob: 340009200000
                           link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
                           projectGroupCode: TT0013                
-                          bedUnit:
-                            id: cac667c8-7350-4e84-b8cb-2dd716a989bf
-                            occupancy: true
+                      bedUnit:
+                        id: cac667c8-7350-4e84-b8cb-2dd716a989bf
+                        occupancy: true
+                        occupantCapacity: 5
+                        overflow: true
+                        name: Bedunit-9
+                        room:
+                          id: 95106841-c174-4d4f-b472-fa279b2a77b3
+                          name: tqxKx
+                          occupantCapacity: 5
+                          area:
+                            id: ab041ea0-fc2f-444d-8105-f96bd9fe2d28
+                            name: ktarW
+                            description: dTajQ
                             occupantCapacity: 5
-                            overflow: true
-                            room:
-                              id: 95106841-c174-4d4f-b472-fa279b2a77b3
-                              name: tqxKx
+                            shelter:
+                              id: c7c9ed9d-a5c7-4828-ba80-b5d6bf480fb5
+                              name: DOxOw
+                              address: fqACA
+                              url: FzlpQ
+                              projectId: 53137974-80f0-4672-be18-8410900497bc
+                              projectType: LVlzU
+                              description: TnfSB
                               occupantCapacity: 5
-                              area:
-                                id: ab041ea0-fc2f-444d-8105-f96bd9fe2d28
-                                name: ktarW
-                                description: dTajQ
-                                occupantCapacity: 5
-                                shelter:
-                                  id: c7c9ed9d-a5c7-4828-ba80-b5d6bf480fb5
-                                  name: DOxOw
-                                  address: fqACA
-                                  url: FzlpQ
-                                  projectId: 53137974-80f0-4672-be18-8410900497bc
-                                  projectType: LVlzU
-                                  description: TnfSB
-                                  occupantCapacity: 5
-                                  address1: ajoQP
-                                  address2: KbiCy
-                                  city: ICxXf
-                                  state: vqNwj
-                                  zipcode: '1245'
-                                  longitude: '38.907192'
-                                  latitude: "-77.036873"
+                              address1: ajoQP
+                              address2: KbiCy
+                              city: ICxXf
+                              state: vqNwj
+                              zipcode: '1245'
+                              longitude: '38.907192'
+                              latitude: "-77.036873"
                          
       parameters:
        - name: page
@@ -4080,7 +4094,6 @@ paths:
                       returned: 1
                       total: 24
                       maximum: 30
-                      sort:
                     housingUnitOccupants:
                     - id: 54216e7d-19dd-48b6-a30a-53b9402d0b79
                       clientId: 35f4fe3d-bfd6-40db-819b-821446efd165

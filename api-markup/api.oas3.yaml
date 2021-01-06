@@ -3251,33 +3251,75 @@ paths:
           content:
             application/json:
                 schema:
+                        $schema: http://json-schema.org/draft-07/schema
                         properties:
-                            pagination:
-                                properties:
-                                    from:
-                                            type: integer                                
-                                    maximum:
-                                            type: integer                                
-                                    returned:
-                                            type: integer
-                                    total:
-                                            type: integer                                        
-                            reservations:
+                            bedUnitReservations:
                                 items:
                                     properties:
-                                        endDate:
-                                            type: integer
-                                        id:
-                                            type: string
-                                            format: uuid
-                                        startDate:
-                                            type: integer
-                                        reservedClientId:
-                                            type: string
-                                            format: uuid
-                                        reservedHouseholdId:
-                                            type: string
-                                            format: uuid
+                                        bedUnit:
+                                            properties:
+                                                id:
+                                                    type: string
+                                                occupancy:
+                                                    type: boolean
+                                                occupantCapacity:
+                                                    type: integer
+                                                overflow:
+                                                    type: boolean
+                                                room:
+                                                    properties:
+                                                        area:
+                                                            properties:
+                                                                description:
+                                                                    type: string
+                                                                id:
+                                                                    type: string
+                                                                name:
+                                                                    type: string
+                                                                occupantCapacity:
+                                                                    type: integer
+                                                                shelter:
+                                                                    properties:
+                                                                        address:
+                                                                            type: string
+                                                                        address1:
+                                                                            type: string
+                                                                        address2:
+                                                                            type: string
+                                                                        city:
+                                                                            type: string
+                                                                        description:
+                                                                            type: string
+                                                                        id:
+                                                                            type: string
+                                                                        latitude:
+                                                                            type: string
+                                                                        longitude:
+                                                                            type: string
+                                                                        name:
+                                                                            type: string
+                                                                        occupantCapacity:
+                                                                            type: integer
+                                                                        projectId:
+                                                                            type: string
+                                                                        projectType:
+                                                                            type: string
+                                                                        state:
+                                                                            type: string
+                                                                        url:
+                                                                            type: string
+                                                                        zipcode:
+                                                                            type: string
+                                                                    type: object
+                                                            type: object
+                                                        id:
+                                                            type: string
+                                                        name:
+                                                            type: string
+                                                        occupantCapacity:
+                                                            type: integer
+                                                    type: object
+                                            type: object
                                         client:
                                             properties:
                                                 clientId:
@@ -3300,33 +3342,89 @@ paths:
                                                     type: string
                                                 ssn:
                                                     type: string
-                                            type: object                                                                                        
+                                            type: object
+                                        endDate:
+                                            type: integer
+                                        id:
+                                            type: string
+                                        reservedClientId:
+                                            type: string
+                                        reservedHouseholdId:
+                                            type: string
+                                        startDate:
+                                            type: integer
                                     type: object
                                 type: array
+                            pagination:
+                                properties:
+                                    from:
+                                        type: integer
+                                    maximum:
+                                        type: integer
+                                    returned:
+                                        type: integer
+                                    sort:
+                                        type: 'null'
+                                    total:
+                                        type: integer
+                                type: object
                         type: object
+
+
                 example:
-                    pagination:
-                      from: 0
-                      returned: 2
-                      total: 67
-                      maximum: 30                                
-                    reservations:
-                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
-                      reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      startDate: 1602095400000
-                      endDate: 1607365800000
-                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
-                      client:
-                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
-                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
-                          firstName: Ryan_1565531680191
-                          middleName: ''
-                          lastName: Peterson_1565531680191
-                          nameSuffix: NS
-                          ssn: 123-45-6789
-                          dob: 340009200000
-                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
-                          projectGroupCode: TT0013                      
+                        pagination:
+                          from: 0
+                          returned: 2
+                          total: 248
+                          maximum: 30
+                          sort:
+                        bedUnitReservations:
+                        - id: 24c70055-dc35-4b8d-9bc6-4befc9abdf72
+                          reservedClientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                          startDate: 1602268200000
+                          endDate: 1602268200000
+                          client:
+                            clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                            dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                            firstName: Ryan_1565531680191
+                            middleName: ''
+                            lastName: Peterson_1565531680191
+                            nameSuffix: NS
+                            ssn: 123-45-6789
+                            dob: 339989400000
+                            link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                            projectGroupCode: TT0013
+                          bedUnit:
+                            id: cac667c8-7350-4e84-b8cb-2dd716a989bf
+                            occupancy: true
+                            occupantCapacity: 5
+                            overflow: true
+                            room:
+                              id: 95106841-c174-4d4f-b472-fa279b2a77b3
+                              name: tqxKx
+                              occupantCapacity: 5
+                              area:
+                                id: ab041ea0-fc2f-444d-8105-f96bd9fe2d28
+                                name: ktarW
+                                description: dTajQ
+                                occupantCapacity: 5
+                                shelter:
+                                  id: c7c9ed9d-a5c7-4828-ba80-b5d6bf480fb5
+                                  name: DOxOw
+                                  address: fqACA
+                                  url: FzlpQ
+                                  projectId: 53137974-80f0-4672-be18-8410900497bc
+                                  projectType: LVlzU
+                                  description: TnfSB
+                                  occupantCapacity: 5
+                                  address1: ajoQP
+                                  address2: KbiCy
+                                  city: ICxXf
+                                  state: vqNwj
+                                  zipcode: '1245'
+                                  longitude: '38.907192'
+                                  latitude: "-77.036873"
       description: Get all bed unit reservations of a specific client
       parameters:
        - name: page
@@ -3371,82 +3469,164 @@ paths:
           content:
             application/json:
                 schema:
-                        properties:
-                            pagination:
+                    $schema: http://json-schema.org/draft-07/schema
+                    properties:
+                        pagination:
+                            properties:
+                                from:
+                                    type: integer
+                                maximum:
+                                    type: integer
+                                returned:
+                                    type: integer
+                                sort:
+                                    type: 'null'
+                                total:
+                                    type: integer
+                            type: object
+                        roomReservations:
+                            items:
                                 properties:
-                                    from:
-                                            type: integer                                
-                                    maximum:
-                                            type: integer                                
-                                    returned:
-                                            type: integer
-                                    total:
-                                            type: integer                                        
-                            reservations:
-                                items:
-                                    properties:
-                                        endDate:
-                                            type: integer
-                                        id:
-                                            type: string
-                                            format: uuid
-                                        startDate:
-                                            type: integer
-                                        reservedClientId:
-                                            type: string
-                                            format: uuid
-                                        reservedHouseholdId:
-                                            type: string
-                                            format: uuid
-                                        client:
-                                            properties:
-                                                clientId:
-                                                    type: string
-                                                dedupClientId:
-                                                    type: string
-                                                dob:
-                                                    type: integer
-                                                firstName:
-                                                    type: string
-                                                lastName:
-                                                    type: string
-                                                link:
-                                                    type: string
-                                                middleName:
-                                                    type: string
-                                                nameSuffix:
-                                                    type: string
-                                                projectGroupCode:
-                                                    type: string
-                                                ssn:
-                                                    type: string
-                                            type: object                                            
-                                    type: object
-                                type: array
-                        type: object
+                                    client:
+                                        properties:
+                                            clientId:
+                                                type: string
+                                            dedupClientId:
+                                                type: string
+                                            dob:
+                                                type: integer
+                                            firstName:
+                                                type: string
+                                            lastName:
+                                                type: string
+                                            link:
+                                                type: string
+                                            middleName:
+                                                type: string
+                                            nameSuffix:
+                                                type: string
+                                            projectGroupCode:
+                                                type: string
+                                            ssn:
+                                                type: string
+                                        type: object
+                                    endDate:
+                                        type: integer
+                                    id:
+                                        type: string
+                                    reservedClientId:
+                                        type: string
+                                    reservedHouseholdId:
+                                        type: string
+                                    room:
+                                        properties:
+                                            area:
+                                                properties:
+                                                    description:
+                                                        type: string
+                                                    id:
+                                                        type: string
+                                                    name:
+                                                        type: string
+                                                    occupantCapacity:
+                                                        type: integer
+                                                    shelter:
+                                                        properties:
+                                                            address:
+                                                                type: string
+                                                            address1:
+                                                                type: string
+                                                            address2:
+                                                                type: string
+                                                            city:
+                                                                type: string
+                                                            description:
+                                                                type: string
+                                                            id:
+                                                                type: string
+                                                            latitude:
+                                                                type: string
+                                                            longitude:
+                                                                type: string
+                                                            name:
+                                                                type: string
+                                                            occupantCapacity:
+                                                                type: integer
+                                                            projectId:
+                                                                type: string
+                                                            projectType:
+                                                                type: string
+                                                            state:
+                                                                type: string
+                                                            url:
+                                                                type: string
+                                                            zipcode:
+                                                                type: string
+                                                        type: object
+                                                type: object
+                                            id:
+                                                type: string
+                                            name:
+                                                type: string
+                                            occupantCapacity:
+                                                type: integer
+                                        type: object
+                                    startDate:
+                                        type: integer
+                                type: object
+                            type: array
+                    type: object
+
+
                 example:
-                    pagination:
-                      from: 0
-                      returned: 2
-                      total: 67
-                      maximum: 30                                
-                    reservations:
-                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
-                      reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      startDate: 1602095400000
-                      endDate: 1607365800000
-                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
-                      client:
-                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
-                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
-                          firstName: Ryan_1565531680191
-                          middleName: ''
-                          lastName: Peterson_1565531680191
-                          nameSuffix: NS
-                          ssn: 123-45-6789
-                          dob: 340009200000
-                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
-                          projectGroupCode: TT0013
+                        pagination:
+                          from: 0
+                          returned: 2
+                          total: 31
+                          maximum: 30
+                          sort:
+                        roomReservations:
+                        - id: 90201ccb-2cef-4538-a3f9-7cd84999bd50
+                          reservedClientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                          reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                          startDate: 1602095400000
+                          endDate: 1607365800000
+                          client:
+                            clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                            dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                            firstName: Ryan_1565531680191
+                            middleName: ''
+                            lastName: Peterson_1565531680191
+                            nameSuffix: NS
+                            ssn: 123-45-6789
+                            dob: 339989400000
+                            link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                            projectGroupCode: TT0013
+                          room:
+                            id: faf301ba-9e19-4cdd-a4cb-1753d986e3ee
+                            name: YSUij
+                            occupantCapacity: 5
+                            area:
+                              id: 3e12ed60-ff04-4180-848e-99e028dc0753
+                              name: SENaN
+                              description: GQfff
+                              occupantCapacity: 5
+                              shelter:
+                                id: 27da1290-5fa5-4bbd-aefa-04687827745a
+                                name: EUBYo
+                                address: BzZWF
+                                url: JTWqF
+                                projectId: 53137974-80f0-4672-be18-8410900497bc
+                                projectType: egfeJ
+                                description: STsAw
+                                occupantCapacity: 5
+                                address1: FbaKM
+                                address2: ETjnB
+                                city: wfsiK
+                                state: hKkvc
+                                zipcode: '1245'
+                                longitude: '38.907192'
+                                latitude: "-77.036873"
       description: Get all room reservations for a specific client
       parameters:
        - name: page
@@ -3491,82 +3671,101 @@ paths:
           content:
             application/json:
                 schema:
-                        properties:
-                            pagination:
+                    properties:
+                        housingUnitReservations:
+                            items:
                                 properties:
-                                    from:
-                                            type: integer                                
-                                    maximum:
-                                            type: integer                                
-                                    returned:
-                                            type: integer
-                                    total:
-                                            type: integer                              
-                            reservations:
-                                items:
-                                    properties:
-                                        endDate:
-                                            type: integer
-                                        id:
-                                            type: string
-                                            format: uuid
-                                        startDate:
-                                            type: integer
-                                        reservedClientId:
-                                            type: string
-                                            format: uuid
-                                        reservedHouseholdId:
-                                            type: string
-                                            format: uuid
-                                        client:
-                                            properties:
-                                                clientId:
-                                                    type: string
-                                                dedupClientId:
-                                                    type: string
-                                                dob:
-                                                    type: integer
-                                                firstName:
-                                                    type: string
-                                                lastName:
-                                                    type: string
-                                                link:
-                                                    type: string
-                                                middleName:
-                                                    type: string
-                                                nameSuffix:
-                                                    type: string
-                                                projectGroupCode:
-                                                    type: string
-                                                ssn:
-                                                    type: string
-                                            type: object                                                                                        
-                                    type: object
-                                type: array
-                        type: object
+                                    client:
+                                        properties:
+                                            clientId:
+                                                type: string
+                                            dedupClientId:
+                                                type: string
+                                            dob:
+                                                type: integer
+                                            firstName:
+                                                type: string
+                                            lastName:
+                                                type: string
+                                            link:
+                                                type: string
+                                            middleName:
+                                                type: string
+                                            nameSuffix:
+                                                type: string
+                                            projectGroupCode:
+                                                type: string
+                                            ssn:
+                                                type: string
+                                        type: object
+                                    endDate:
+                                        type: integer
+                                    housingUnit:
+                                        properties:
+                                            description:
+                                                type: string
+                                            id:
+                                                type: string
+                                            name:
+                                                type: string
+                                            occupantCapacity:
+                                                type: integer
+                                            projectId:
+                                                type: string
+                                        type: object
+                                    id:
+                                        type: string
+                                    reservedClientId:
+                                        type: string
+                                    reservedHouseholdId:
+                                        type: string
+                                    startDate:
+                                        type: integer
+                                type: object
+                            type: array
+                        pagination:
+                            properties:
+                                from:
+                                    type: integer
+                                maximum:
+                                    type: integer
+                                returned:
+                                    type: integer
+                                total:
+                                    type: integer
+                            type: object
+                    type: object
+
                 example:
                     pagination:
                       from: 0
                       returned: 2
-                      total: 67
-                      maximum: 30                                
-                    reservations:
-                    - reservedClientId: 480ea107-def2-4003-a76a-7210b0001424
+                      total: 27
+                      maximum: 30
+                      sort:
+                    housingUnitReservations:
+                    - id: 15603a3d-8d76-4590-aae4-2e753684c281
+                      reservedClientId: 35f4fe3d-bfd6-40db-819b-821446efd165
                       reservedHouseholdId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      startDate: 1602095400000
-                      endDate: 1607365800000
-                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      startDate: 1602288000000
+                      endDate: 1602288000000
                       client:
-                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
-                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
-                          firstName: Ryan_1565531680191
-                          middleName: ''
-                          lastName: Peterson_1565531680191
-                          nameSuffix: NS
-                          ssn: 123-45-6789
-                          dob: 340009200000
-                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
-                          projectGroupCode: TT0013                      
+                        clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                        dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                        firstName: Ryan_1565531680191
+                        middleName: ''
+                        lastName: Peterson_1565531680191
+                        nameSuffix: NS
+                        ssn: 123-45-6789
+                        dob: 339989400000
+                        link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
+                        projectGroupCode: TT0013
+                      housingUnit:
+                        id: 602535e0-b25b-4e04-ab78-251fa396c66d
+                        name: iEyyUSERRH
+                        description: lnBnGECfSC
+                        occupantCapacity: 5
+                        projectId: 53137974-80f0-4672-be18-8410900497bc
       description: Get all housing unit reservations for a specific client
       parameters:
        - name: page
@@ -3599,59 +3798,121 @@ paths:
           content:
             application/json:
                 schema:
-                        properties:
-                            pagination:
-                                properties:
-                                    from:
-                                            type: integer                                
-                                    maximum:
-                                            type: integer                                
-                                    returned:
-                                            type: integer
-                                    total:
-                                            type: integer                                        
-                            occupants:
-                                items:
+                            properties:
+                                occupants:
+                                    items:
+                                        properties:
+                                            client:
+                                                properties:
+                                                    bedUnit:
+                                                        properties:
+                                                            id:
+                                                                type: string
+                                                            occupancy:
+                                                                type: boolean
+                                                            occupantCapacity:
+                                                                type: integer
+                                                            overflow:
+                                                                type: boolean
+                                                            room:
+                                                                properties:
+                                                                    area:
+                                                                        properties:
+                                                                            description:
+                                                                                type: string
+                                                                            id:
+                                                                                type: string
+                                                                            name:
+                                                                                type: string
+                                                                            occupantCapacity:
+                                                                                type: integer
+                                                                            shelter:
+                                                                                properties:
+                                                                                    address:
+                                                                                        type: string
+                                                                                    address1:
+                                                                                        type: string
+                                                                                    address2:
+                                                                                        type: string
+                                                                                    city:
+                                                                                        type: string
+                                                                                    description:
+                                                                                        type: string
+                                                                                    id:
+                                                                                        type: string
+                                                                                    latitude:
+                                                                                        type: string
+                                                                                    longitude:
+                                                                                        type: string
+                                                                                    name:
+                                                                                        type: string
+                                                                                    occupantCapacity:
+                                                                                        type: integer
+                                                                                    projectId:
+                                                                                        type: string
+                                                                                    projectType:
+                                                                                        type: string
+                                                                                    state:
+                                                                                        type: string
+                                                                                    url:
+                                                                                        type: string
+                                                                                    zipcode:
+                                                                                        type: string
+                                                                                type: object
+                                                                        type: object
+                                                                    id:
+                                                                        type: string
+                                                                    name:
+                                                                        type: string
+                                                                    occupantCapacity:
+                                                                        type: integer
+                                                                type: object
+                                                        type: object
+                                                    clientId:
+                                                        type: string
+                                                    dedupClientId:
+                                                        type: string
+                                                    dob:
+                                                        type: integer
+                                                    firstName:
+                                                        type: string
+                                                    lastName:
+                                                        type: string
+                                                    link:
+                                                        type: string
+                                                    middleName:
+                                                        type: string
+                                                    nameSuffix:
+                                                        type: string
+                                                    projectGroupCode:
+                                                        type: string
+                                                    ssn:
+                                                        type: string
+                                                type: object
+                                            clientId:
+                                                type: string
+                                            endDate:
+                                                type: integer
+                                            enrollmentId:
+                                                type: string
+                                            id:
+                                                type: string
+                                            startDate:
+                                                type: integer
+                                        type: object
+                                    type: array
+                                pagination:
                                     properties:
-                                        endDate:
+                                        from:
                                             type: integer
-                                        id:
-                                            type: string
-                                            format: uuid
-                                        startDate:
+                                        maximum:
                                             type: integer
-                                        clientId:
-                                            type: string
-                                            format: uuid
-                                        enrollmentId:
-                                            type: string
-                                            format: uuid
-                                        client:
-                                            properties:
-                                                clientId:
-                                                    type: string
-                                                dedupClientId:
-                                                    type: string
-                                                dob:
-                                                    type: integer
-                                                firstName:
-                                                    type: string
-                                                lastName:
-                                                    type: string
-                                                link:
-                                                    type: string
-                                                middleName:
-                                                    type: string
-                                                nameSuffix:
-                                                    type: string
-                                                projectGroupCode:
-                                                    type: string
-                                                ssn:
-                                                    type: string
-                                            type: object                                                                                        
+                                        returned:
+                                            type: integer
+                                        total:
+                                            type: integer
                                     type: object
-                                type: array
-                        type: object
+                            type: object
                 example:
                     pagination:
                       from: 0
@@ -3674,7 +3935,38 @@ paths:
                           ssn: 123-45-6789
                           dob: 340009200000
                           link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
-                          projectGroupCode: TT0013                      
+                          projectGroupCode: TT0013                
+                          bedUnit:
+                            id: cac667c8-7350-4e84-b8cb-2dd716a989bf
+                            occupancy: true
+                            occupantCapacity: 5
+                            overflow: true
+                            room:
+                              id: 95106841-c174-4d4f-b472-fa279b2a77b3
+                              name: tqxKx
+                              occupantCapacity: 5
+                              area:
+                                id: ab041ea0-fc2f-444d-8105-f96bd9fe2d28
+                                name: ktarW
+                                description: dTajQ
+                                occupantCapacity: 5
+                                shelter:
+                                  id: c7c9ed9d-a5c7-4828-ba80-b5d6bf480fb5
+                                  name: DOxOw
+                                  address: fqACA
+                                  url: FzlpQ
+                                  projectId: 53137974-80f0-4672-be18-8410900497bc
+                                  projectType: LVlzU
+                                  description: TnfSB
+                                  occupantCapacity: 5
+                                  address1: ajoQP
+                                  address2: KbiCy
+                                  city: ICxXf
+                                  state: vqNwj
+                                  zipcode: '1245'
+                                  longitude: '38.907192'
+                                  latitude: "-77.036873"
+                         
       parameters:
        - name: page
          in: query
@@ -3719,82 +4011,97 @@ paths:
           content:
             application/json:
                 schema:
-                        properties:
-                            pagination:
+                    properties:
+                        housingUnitOccupants:
+                            items:
                                 properties:
-                                    from:
-                                            type: integer                                
-                                    maximum:
-                                            type: integer                                
-                                    returned:
-                                            type: integer
-                                    total:
-                                            type: integer                                        
-                            occupants:
-                                items:
-                                    properties:
-                                        endDate:
-                                            type: integer
-                                        id:
-                                            type: string
-                                            format: uuid
-                                        startDate:
-                                            type: integer
-                                        clientId:
-                                            type: string
-                                            format: uuid
-                                        enrollmentId:
-                                            type: string
-                                            format: uuid
-                                        client:
-                                            properties:
-                                                clientId:
-                                                    type: string
-                                                dedupClientId:
-                                                    type: string
-                                                dob:
-                                                    type: integer
-                                                firstName:
-                                                    type: string
-                                                lastName:
-                                                    type: string
-                                                link:
-                                                    type: string
-                                                middleName:
-                                                    type: string
-                                                nameSuffix:
-                                                    type: string
-                                                projectGroupCode:
-                                                    type: string
-                                                ssn:
-                                                    type: string
-                                            type: object                                                                                        
-                                    type: object
-                                type: array
-                        type: object
+                                    client:
+                                        properties:
+                                            clientId:
+                                                type: string
+                                            dedupClientId:
+                                                type: string
+                                            dob:
+                                                type: integer
+                                            firstName:
+                                                type: string
+                                            lastName:
+                                                type: string
+                                            link:
+                                                type: string
+                                            middleName:
+                                                type: string
+                                            nameSuffix:
+                                                type: string
+                                            projectGroupCode:
+                                                type: string
+                                            ssn:
+                                                type: string
+                                        type: object
+                                    clientId:
+                                        type: string
+                                    endDate:
+                                        type: integer
+                                    housingUnit:
+                                        properties:
+                                            description:
+                                                type: string
+                                            id:
+                                                type: string
+                                            name:
+                                                type: string
+                                            occupantCapacity:
+                                                type: integer
+                                            projectId:
+                                                type: string
+                                        type: object
+                                    id:
+                                        type: string
+                                    startDate:
+                                        type: integer
+                                type: object
+                            type: array
+                        pagination:
+                            properties:
+                                from:
+                                    type: integer
+                                maximum:
+                                    type: integer
+                                returned:
+                                    type: integer
+                                total:
+                                    type: integer
+                            type: object
+                    type: object
+
                 example:
                     pagination:
                       from: 0
-                      returned: 2
-                      total: 67
-                      maximum: 30                                
-                    occupants:
-                    - clientId: 480ea107-def2-4003-a76a-7210b0001424
-                      enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
-                      startDate: 1602095400000
-                      endDate: 1607365800000
-                      id: d53049bc-bfd1-47d7-9097-f4bf3807267b
+                      returned: 1
+                      total: 24
+                      maximum: 30
+                      sort:
+                    housingUnitOccupants:
+                    - id: 54216e7d-19dd-48b6-a30a-53b9402d0b79
+                      clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                      startDate: 1602288000000
+                      endDate: 1602288000000
+                      housingUnit:
+                        id: 3f4b44bd-9f4b-4b1c-a5ae-b94a40aed8d2
+                        name: yDYxxskYMV
+                        description: XXegQITbBW
+                        occupantCapacity: 5
+                        projectId: 53137974-80f0-4672-be18-8410900497bc
                       client:
-                          clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
-                          dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
-                          firstName: Ryan_1565531680191
-                          middleName: ''
-                          lastName: Peterson_1565531680191
-                          nameSuffix: NS
-                          ssn: 123-45-6789
-                          dob: 340009200000
-                          link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
-                          projectGroupCode: TT0013                      
+                        clientId: 35f4fe3d-bfd6-40db-819b-821446efd165
+                        dedupClientId: 8fe657f0-bc3f-11e9-a57b-02fe61f7863e
+                        firstName: Ryan_1565531680191
+                        middleName: ''
+                        lastName: Peterson_1565531680191
+                        nameSuffix: NS
+                        ssn: 123-45-6789
+                        dob: 339989400000
+                        link: "/hmis-clientapi/rest/v2017/clients/35f4fe3d-bfd6-40db-819b-821446efd165"
       parameters:
        - name: page
          in: query

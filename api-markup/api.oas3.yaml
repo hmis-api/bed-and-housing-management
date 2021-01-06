@@ -2554,10 +2554,10 @@ paths:
                     description: unit 1 with 10 beds
                     occupantCapacity: '5'
                     address1: dPhnt
-                    address2:"jLTuB
+                    address2: jLTuB
                     city: KYUUj 
                     state: aETPQ
-                    zipcode:1245
+                    zipcode: 1245
                     longitude: "38.907192"
                     latitude: "-77.036873"
 
@@ -2649,10 +2649,10 @@ paths:
                       occupantCapacity: 5
                       isActive: true
                       address1: dPhnt
-                      address2:"jLTuB
+                      address2: jLTuB
                       city: KYUUj 
                       state: aETPQ
-                      zipcode:1245
+                      zipcode: 1245
                       longitude: "38.907192"
                       latitude: "-77.036873"                      
                     - id: 02e7fcc9-9687-4e57-9154-99fb0723f618
@@ -2737,10 +2737,10 @@ paths:
                     description: unit with 10 beds
                     occupantCapacity: '5'
                     address1: dPhnt
-                    address2:"jLTuB
+                    address2: jLTuB
                     city: KYUUj 
                     state: aETPQ
-                    zipcode:1245
+                    zipcode: 1245
                     longitude: "38.907192"
                     latitude: "-77.036873"                    
         required: true
@@ -2793,10 +2793,10 @@ paths:
                     description: unit with 10 beds
                     occupantCapacity: '5'
                     address1: dPhnt
-                    address2:"jLTuB
+                    address2: jLTuB
                     city: KYUUj 
                     state: aETPQ
-                    zipcode:1245
+                    zipcode: 1245
                     longitude: "38.907192"
                     latitude: "-77.036873"                    
       description: Get selected housing unit

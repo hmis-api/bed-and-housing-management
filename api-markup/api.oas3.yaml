@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Bed and Housing Management API
-  version: "1.6.2"
+  version: "1.6.3"
   contact:
     name: API Source
     email: support@hslynk.com
@@ -2975,6 +2975,8 @@ paths:
                                         type: string
                                     occupantCapacity:
                                         type: integer
+                                    occupancy:
+                                        type: boolean                                        
                                     projectId:
                                         type: string
                                         format: uuid
@@ -3012,6 +3014,7 @@ paths:
                       projectType: UtISA
                       description: IrJKa
                       occupantCapacity: 5
+                      occupancy: true
                       isActive: true
                       address1: dPhnt
                       address2: jLTuB
@@ -3127,6 +3130,8 @@ paths:
                             type: string
                         name:
                             type: string
+                        occupancy:
+                            type: boolean                            
                         occupantCapacity:
                             type: integer
                         projectId:
@@ -3156,6 +3161,7 @@ paths:
                     projectId: 53137974-80f0-4672-be18-8410900497bc
                     projectType: 2
                     description: unit with 10 beds
+                    occupancy: true
                     occupantCapacity: '5'
                     address1: dPhnt
                     address2: jLTuB
@@ -3441,6 +3447,87 @@ paths:
         schema:
           type: string
           format: uuid
+  '/housingunits/{housingunitid}/checkin':
+    parameters:
+      - name: housingunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    post:
+      tags: ['housingUnit-occupants']
+      description: |
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                    properties:
+                        endDate:
+                            type: integer
+                        startDate:
+                            type: integer
+                        clientId:
+                            type: string
+                            format: uuid
+                        enrollmentId:
+                            type: string
+                            format: uuid
+                    type: object
+            example:
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    enrollmentId: f1bfafc4-61a5-4d08-ba84-e8cbeb969b6f
+                    startDate: 1602095400000
+                    endDate: 1607365800000
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+                schema:
+                    properties:
+                        id:
+                            type: string
+                            format : uuid
+                    type: object
+
+                example:
+                    id: 6810c6bb-76f6-4df2-bc16-df22da5740fb
+
+  '/housingunits/{housingunitid}/checkout':
+    parameters:
+      - name: housingunitid
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid  
+    put:
+      tags: ['housingUnit-occupants']
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+                schema:
+                  example: |
+      description: |
+      requestBody:
+        content:
+          application/json:
+            schema:
+                    properties:
+                        checkoutDate:
+                            type: integer                            
+                        clientId:
+                            type: string
+                            format: uuid
+                    type: object
+            example:
+                    clientId: 480ea107-def2-4003-a76a-7210b0001424
+                    checkoutDate: 1602095400000
+        required: true          
   '/housingunits/{housingunitid}/occupants':
     parameters:
       - name: housingunitid
